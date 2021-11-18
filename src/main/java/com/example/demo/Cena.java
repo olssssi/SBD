@@ -9,8 +9,6 @@ public class Cena {
     @GeneratedValue
     @Column(name = "id_ceny")
     private Long id;
-    @Column
     private Float cena;
-    @Column
     private Float stawkaVat;
 }

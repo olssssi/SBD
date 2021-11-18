@@ -9,6 +9,5 @@ public class Kategoria {
     @GeneratedValue
     @Column(name = "id_kategorii")
     private Long idKategorii;
-    @Column
     private String nazwa;
 }

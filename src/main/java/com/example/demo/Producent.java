@@ -9,6 +9,5 @@ public class Producent {
     @GeneratedValue
     @Column(name = "id_producenta")
     private Long idProducenta;
-    @Column
     private String nazwa;
 }
