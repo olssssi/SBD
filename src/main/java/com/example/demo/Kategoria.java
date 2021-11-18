@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Kategoria {
     @Id
     @GeneratedValue
+    @Column(name = "id_kategorii")
     private Long idKategorii;
     @Column
     private String nazwa;

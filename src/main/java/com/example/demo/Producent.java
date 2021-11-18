@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class Producent {
     @Id
     @GeneratedValue
-    private Long idPracownika;
+    @Column(name = "id_producenta")
+    private Long idProducenta;
     @Column
     private String nazwa;
 }

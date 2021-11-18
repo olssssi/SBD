@@ -7,11 +7,10 @@ import javax.persistence.*;
 public class Pozycja {
     @Id
     @GeneratedValue
+    @Column(name = "nr_pozycji")
     private Long nrPozycji;
-
     @ManyToOne
     private Zamowienie zamowienie;
-
     private int ilosc;
     @ManyToOne
     private Towar towar;

@@ -7,9 +7,12 @@ import javax.persistence.*;
 public class Towar {
     @Id
     @GeneratedValue
+    @Column(name = "id_towaru")
     private Long idTowaru;
-    private Long idProducenta;
-    private Long idKategorii;
+    @ManyToOne
+    private Producent producent;
+    @ManyToOne
+    private Kategoria kategoria;
     @ManyToOne
     private Cena cena;
     private int ilosc;

@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Zamowienie {
     @Id
     @GeneratedValue
+    @Column(name = "id_zamowienia")
     private Long idZamowienia;
     @ManyToOne
     private Klient klient;

@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Cena {
     @Id
     @GeneratedValue
+    @Column(name = "id_ceny")
     private Long id;
     @Column
     private Float cena;
