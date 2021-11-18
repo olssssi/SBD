@@ -9,7 +9,9 @@ public class Pozycja {
     @GeneratedValue
     private Long nrPozycji;
 
-    //private Zamowienie zamowienie;
+    @ManyToOne
+    private Zamowienie zamowienie;
+
     private int ilosc;
     @ManyToOne
     private Towar towar;

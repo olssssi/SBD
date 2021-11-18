@@ -8,5 +8,6 @@ public class Stanowisko {
     @Id
     @GeneratedValue
     private Long id;
+    @Column
     private String imie;
 }
