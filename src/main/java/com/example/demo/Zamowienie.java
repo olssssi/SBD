@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.klient.Klient;
+import com.example.demo.pracownik.Pracownik;
+
 import javax.persistence.*;
 
 @Entity
