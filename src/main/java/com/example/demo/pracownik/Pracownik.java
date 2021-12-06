@@ -1,6 +1,6 @@
 package com.example.demo.pracownik;
 
-import com.example.demo.Stanowisko;
+import com.example.demo.stanowisko.Stanowisko;
 
 import javax.persistence.*;
 

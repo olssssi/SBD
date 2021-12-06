@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.stanowisko;
 
 import javax.persistence.*;
 
@@ -10,4 +10,12 @@ public class Stanowisko {
     @Column(name = "id_stanowiska")
     private Long idStanowiska;
     private String nazwa;
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
 }

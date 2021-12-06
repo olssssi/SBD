@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.kategoria;
 
 import javax.persistence.*;
 
@@ -10,4 +10,12 @@ public class Kategoria {
     @Column(name = "id_kategorii")
     private Long idKategorii;
     private String nazwa;
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
 }

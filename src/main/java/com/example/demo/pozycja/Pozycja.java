@@ -1,0 +1,44 @@
+package com.example.demo.pozycja;
+
+import com.example.demo.zamowienie.Zamowienie;
+import com.example.demo.towar.Towar;
+
+import javax.persistence.*;
+
+@Entity
+@Table
+public class Pozycja {
+    @Id
+    @GeneratedValue
+    @Column(name = "nr_pozycji")
+    private Long nrPozycji;
+    @ManyToOne
+    private Zamowienie zamowienie;
+    private int ilosc;
+    @ManyToOne
+    private Towar towar;
+
+    public Zamowienie getZamowienie() {
+        return zamowienie;
+    }
+
+    public void setZamowienie(Zamowienie zamowienie) {
+        this.zamowienie = zamowienie;
+    }
+
+    public int getIlosc() {
+        return ilosc;
+    }
+
+    public void setIlosc(int ilosc) {
+        this.ilosc = ilosc;
+    }
+
+    public Towar getTowar() {
+        return towar;
+    }
+
+    public void setTowar(Towar towar) {
+        this.towar = towar;
+    }
+}
