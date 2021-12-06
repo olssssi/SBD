@@ -11,6 +11,13 @@ public class Kategoria {
     private Long idKategorii;
     private String nazwa;
 
+    public Kategoria(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public Kategoria() {
+    }
+
     public String getNazwa() {
         return nazwa;
     }

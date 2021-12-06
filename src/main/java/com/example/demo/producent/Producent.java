@@ -11,6 +11,13 @@ public class Producent {
     private Long idProducenta;
     private String nazwa;
 
+    public Producent(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public Producent() {
+    }
+
     public String getNazwa() {
         return nazwa;
     }

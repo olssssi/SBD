@@ -11,11 +11,18 @@ public class Stanowisko {
     private Long idStanowiska;
     private String nazwa;
 
+    public Stanowisko() {
+    }
+
     public String getNazwa() {
         return nazwa;
     }
 
     public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public Stanowisko(String nazwa) {
         this.nazwa = nazwa;
     }
 }

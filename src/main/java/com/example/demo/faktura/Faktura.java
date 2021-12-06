@@ -14,6 +14,13 @@ public class Faktura {
     @ManyToOne
     private Zamowienie zamowienie;
 
+    public Faktura(Zamowienie zamowienie) {
+        this.zamowienie = zamowienie;
+    }
+
+    public Faktura() {
+    }
+
     public Zamowienie getZamowienie() {
         return zamowienie;
     }

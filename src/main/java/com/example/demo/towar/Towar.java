@@ -9,6 +9,9 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Towar {
+    public Towar() {
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "id_towaru")
@@ -20,6 +23,13 @@ public class Towar {
     @ManyToOne
     private Cena cena;
     private int ilosc;
+
+    public Towar(Producent producent, Kategoria kategoria, Cena cena, int ilosc) {
+        this.producent = producent;
+        this.kategoria = kategoria;
+        this.cena = cena;
+        this.ilosc = ilosc;
+    }
 
     public Producent getProducent() {
         return producent;

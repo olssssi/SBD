@@ -19,6 +19,15 @@ public class Zamowienie {
     private Pracownik pracownik;
     private StanZamowienia stanZamowienia;
 
+    public Zamowienie(Klient klient, Pracownik pracownik, StanZamowienia stanZamowienia) {
+        this.klient = klient;
+        this.pracownik = pracownik;
+        this.stanZamowienia = stanZamowienia;
+    }
+
+    public Zamowienie() {
+    }
+
     public Klient getKlient() {
         return klient;
     }

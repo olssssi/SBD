@@ -1,8 +1,5 @@
 package com.example.demo.faktura;
 
-import com.example.demo.cena.Cena;
-import com.example.demo.cena.CenaService;
-import com.example.demo.exceptions.CenaNotFoundException;
 import com.example.demo.exceptions.FakturaNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

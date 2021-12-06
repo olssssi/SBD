@@ -17,6 +17,16 @@ public class Pracownik {
     @ManyToOne
     private Stanowisko stanowisko;
 
+    public Pracownik(String imie, String nazwisko, String telefon, Stanowisko stanowisko) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.telefon = telefon;
+        this.stanowisko = stanowisko;
+    }
+
+    public Pracownik() {
+    }
+
     public Long getIdPracownika() {
         return idPracownika;
     }

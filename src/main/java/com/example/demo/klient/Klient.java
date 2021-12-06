@@ -13,6 +13,15 @@ public class Klient {
     private String nazwisko;
     private String telefon;
 
+    public Klient(String imie, String nazwisko, String telefon) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.telefon = telefon;
+    }
+
+    public Klient() {
+    }
+
     public Long getIdKlienta() {
         return idKlienta;
     }
