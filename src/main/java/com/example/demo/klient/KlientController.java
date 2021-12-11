@@ -23,21 +23,21 @@ public class KlientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Klient> getClass(@PathVariable Long id) throws KlientNotFoundException {
+    public ResponseEntity<Klient> getKlient(@PathVariable Long id) throws KlientNotFoundException {
         return new ResponseEntity<>(klientService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping()
     @ResponseBody
-    public ResponseEntity<HttpStatus> addGroup(@RequestBody Klient group) {
-        klientService.save(group);
+    public ResponseEntity<HttpStatus> addKlient(@RequestBody Klient klient) {
+        klientService.save(klient);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<HttpStatus> updateGroup(@PathVariable Long id, @RequestBody Klient group) throws KlientNotFoundException {
-        klientService.update(id, group);
+    public ResponseEntity<HttpStatus> updateKlient(@PathVariable Long id, @RequestBody Klient klient) throws KlientNotFoundException {
+        klientService.update(id, klient);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
