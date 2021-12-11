@@ -12,11 +12,34 @@ public class Klient {
     private String imie;
     private String nazwisko;
     private String telefon;
+    private String nazwaFirmy;
+    private String NIP;
+    private String ulica;
+    private String nrLokalu;
+    private String miejscowosc;
+    private String kodPocztowy;
+    private String kraj;
 
-    public Klient(String imie, String nazwisko, String telefon) {
+    public Klient(String imie,
+                  String nazwisko,
+                  String telefon,
+                  String nazwaFirmy,
+                  String NIP,
+                  String ulica,
+                  String nrLokalu,
+                  String miejscowosc,
+                  String kodPocztowy,
+                  String kraj) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.telefon = telefon;
+        this.nazwaFirmy = nazwaFirmy;
+        this.NIP = NIP;
+        this.ulica = ulica;
+        this.nrLokalu = nrLokalu;
+        this.miejscowosc = miejscowosc;
+        this.kodPocztowy = kodPocztowy;
+        this.kraj = kraj;
     }
 
     public Klient() {
@@ -52,5 +75,61 @@ public class Klient {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
+    }
+
+    public String getNazwaFirmy() {
+        return nazwaFirmy;
+    }
+
+    public void setNazwaFirmy(String nazwaFirmy) {
+        this.nazwaFirmy = nazwaFirmy;
+    }
+
+    public String getNIP() {
+        return NIP;
+    }
+
+    public void setNIP(String NIP) {
+        this.NIP = NIP;
+    }
+
+    public String getUlica() {
+        return ulica;
+    }
+
+    public void setUlica(String ulica) {
+        this.ulica = ulica;
+    }
+
+    public String getNrLokalu() {
+        return nrLokalu;
+    }
+
+    public void setNrLokalu(String nrLokalu) {
+        this.nrLokalu = nrLokalu;
+    }
+
+    public String getMiejscowosc() {
+        return miejscowosc;
+    }
+
+    public void setMiejscowosc(String miejscowosc) {
+        this.miejscowosc = miejscowosc;
+    }
+
+    public String getKodPocztowy() {
+        return kodPocztowy;
+    }
+
+    public void setKodPocztowy(String kodPocztowy) {
+        this.kodPocztowy = kodPocztowy;
+    }
+
+    public String getKraj() {
+        return kraj;
+    }
+
+    public void setKraj(String kraj) {
+        this.kraj = kraj;
     }
 }

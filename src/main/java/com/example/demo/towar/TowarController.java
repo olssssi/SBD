@@ -1,6 +1,12 @@
 package com.example.demo.towar;
 
+import com.example.demo.exceptions.KategoriaNotFoundException;
+import com.example.demo.exceptions.ProducentNotFoundException;
 import com.example.demo.exceptions.TowarNotFoundException;
+import com.example.demo.kategoria.Kategoria;
+import com.example.demo.kategoria.KategoriaService;
+import com.example.demo.producent.Producent;
+import com.example.demo.producent.ProducentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +18,35 @@ import java.util.List;
 @RequestMapping("/towary")
 public class TowarController {
     private final TowarService towarService;
-    @Autowired
-    public TowarController(TowarService towarService) {
+    private final ProducentService producentService;
+    private final KategoriaService kategoriaService;
+
+    public TowarController(TowarService towarService,
+                           ProducentService producentService,
+                           KategoriaService kategoriaService) {
         this.towarService = towarService;
+        this.producentService = producentService;
+        this.kategoriaService = kategoriaService;
     }
+
+    @Autowired
+
 
     @GetMapping("")
     public ResponseEntity<List<Towar>> getTowary() {
         return new ResponseEntity<>(towarService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/producent/{id}")
+    public ResponseEntity<List<Towar>> getTowaryByProducent(@PathVariable Long id) throws ProducentNotFoundException {
+        Producent producent = producentService.findById(id);
+        return new ResponseEntity<>(towarService.findByProducent(producent), HttpStatus.OK);
+    }
+
+    @GetMapping("/kategoria/{id}")
+    public ResponseEntity<List<Towar>> getTowaryByKategoria(@PathVariable Long id) throws KategoriaNotFoundException {
+        Kategoria kategoria = kategoriaService.findById(id);
+        return new ResponseEntity<>(towarService.findByKategoria(kategoria), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

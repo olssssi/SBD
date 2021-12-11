@@ -1,6 +1,9 @@
 package com.example.demo.zamowienie;
 
 import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.klient.Klient;
+import com.example.demo.pracownik.Pracownik;
+import com.example.demo.stanZamowienia.StanZamowienia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,12 @@ public class ZamowienieService {
 
     public List<Zamowienie> findAll() {
         return zamowienieRepository.findAll();
+    }
+    public List<Zamowienie> findByKlient(Klient klient) {
+        return zamowienieRepository.findByKlient(klient);
+    }
+    public List<Zamowienie> findByPracownik(Pracownik pracownik) {
+        return zamowienieRepository.findByPracownik(pracownik);
     }
 
     public void save(Zamowienie zamowienie) {

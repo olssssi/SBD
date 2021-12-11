@@ -21,6 +21,13 @@ public class KlientService{
         klientToUpdate.setImie(klient.getImie());
         klientToUpdate.setNazwisko(klient.getNazwisko());
         klientToUpdate.setTelefon(klient.getTelefon());
+        klientToUpdate.setNazwaFirmy(klient.getNazwaFirmy());
+        klientToUpdate.setNIP(klient.getNIP());
+        klientToUpdate.setUlica(klient.getUlica());
+        klientToUpdate.setNrLokalu(klient.getNrLokalu());
+        klientToUpdate.setMiejscowosc(klient.getMiejscowosc());
+        klientToUpdate.setKodPocztowy(klient.getKodPocztowy());
+        klientToUpdate.setKraj(klient.getKraj());
 
         klientRepository.save(klientToUpdate);
     }

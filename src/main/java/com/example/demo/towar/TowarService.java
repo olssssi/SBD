@@ -1,6 +1,8 @@
 package com.example.demo.towar;
 
 import com.example.demo.exceptions.TowarNotFoundException;
+import com.example.demo.kategoria.Kategoria;
+import com.example.demo.producent.Producent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,14 @@ public class TowarService {
     public Towar findById(Long id) throws TowarNotFoundException {
         return towarRepository.findById(id)
                 .orElseThrow(TowarNotFoundException::new);
+    }
+
+    public List<Towar> findByProducent(Producent producent){
+        return towarRepository.findByProducent(producent);
+    }
+
+    public List<Towar> findByKategoria(Kategoria kategoria){
+        return towarRepository.findByKategoria(kategoria);
     }
 
     public List<Towar> findAll() {

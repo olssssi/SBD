@@ -1,6 +1,12 @@
 package com.example.demo.zamowienie;
 
+import com.example.demo.exceptions.KlientNotFoundException;
+import com.example.demo.exceptions.PracownikNotFoundException;
 import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.klient.Klient;
+import com.example.demo.klient.KlientService;
+import com.example.demo.pracownik.Pracownik;
+import com.example.demo.pracownik.PracownikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +18,33 @@ import java.util.List;
 @RequestMapping("/zamowienia")
 public class ZamowienieController {
     private final ZamowienieService zamowienieService;
+    private final PracownikService pracownikService;
+    private final KlientService klientService;
+
     @Autowired
-    public ZamowienieController(ZamowienieService zamowienieService) {
+    public ZamowienieController(ZamowienieService zamowienieService,
+                                PracownikService pracownikService,
+                                KlientService klientService) {
         this.zamowienieService = zamowienieService;
+        this.pracownikService = pracownikService;
+        this.klientService = klientService;
     }
 
     @GetMapping("")
     public ResponseEntity<List<Zamowienie>> getZamowienia() {
         return new ResponseEntity<>(zamowienieService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/klient/{id}")
+    public ResponseEntity<List<Zamowienie>> getZamowieniaByKlient(@PathVariable Long id) throws KlientNotFoundException {
+        Klient klient = klientService.findById(id);
+        return new ResponseEntity<>(zamowienieService.findByKlient(klient), HttpStatus.OK);
+    }
+
+    @GetMapping("/pracownik/{id}")
+    public ResponseEntity<List<Zamowienie>> getZamowieniaByPracownik(@PathVariable Long id) throws PracownikNotFoundException {
+        Pracownik pracownik = pracownikService.findById(id);
+        return new ResponseEntity<>(zamowienieService.findByPracownik(pracownik), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
