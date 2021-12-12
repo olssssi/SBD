@@ -8,10 +8,12 @@ import com.example.demo.pracownik.Pracownik;
 import com.example.demo.pracownik.PracownikRepository;
 import com.example.demo.producent.Producent;
 import com.example.demo.producent.ProducentRepository;
+import com.example.demo.rabat.Rabat;
 import com.example.demo.stanowisko.Stanowisko;
 import com.example.demo.stanowisko.StanowiskoRepository;
 import com.example.demo.towar.Towar;
 import com.example.demo.towar.TowarRepository;
+import com.example.demo.rabat.RabatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,7 @@ public class Init implements CommandLineRunner {
     private final TowarRepository towarRepository;
     private final ProducentRepository producentRepository;
     private final KlientRepository klientRepository;
+    private final RabatRepository rabatRepository;
 
     @Autowired
     public Init(PracownikRepository pracownikRepository,
@@ -31,13 +34,15 @@ public class Init implements CommandLineRunner {
                 KategoriaRepository kategoriaRepository,
                 TowarRepository towarRepository,
                 ProducentRepository producentRepository,
-                KlientRepository klientRepository) {
+                KlientRepository klientRepository,
+                RabatRepository rabatRepository) {
         this.pracownikRepository = pracownikRepository;
         this.stanowiskoRepository = stanowiskoRepository;
         this.kategoriaRepository = kategoriaRepository;
         this.towarRepository = towarRepository;
         this.producentRepository = producentRepository;
         this.klientRepository = klientRepository;
+        this.rabatRepository = rabatRepository;
     }
 
     @Override
@@ -48,10 +53,15 @@ public class Init implements CommandLineRunner {
         kategoriaRepository.deleteAll();
         producentRepository.deleteAll();
         klientRepository.deleteAll();
+        rabatRepository.deleteAll();
 
         Producent producent = new Producent("BEKO");
         Stanowisko stanowisko = new Stanowisko("Magazynier");
         Pracownik pracownik = new Pracownik("Anna", "Kowalska", "502365254", stanowisko);
+
+        Rabat rabat1 = new Rabat("Stały klient", 10F);
+        Rabat rabat2 = new Rabat("Premium klient", 15F);
+        Rabat rabat3 = new Rabat("Polecający klient", 5F);
 
         Kategoria kategoria1 = new Kategoria("Lodówki", 23F);
         Kategoria kategoria2 = new Kategoria("Pralki", 23F);
@@ -74,7 +84,8 @@ public class Init implements CommandLineRunner {
                 "5/2",
                 "Białystok",
                 "15-058",
-                "Polska"
+                "Polska",
+                rabat3
         );
 
         producentRepository.save(producent);
@@ -87,6 +98,9 @@ public class Init implements CommandLineRunner {
         kategoriaRepository.save(kategoria5);
         kategoriaRepository.save(kategoria6);
         kategoriaRepository.save(kategoria7);
+        rabatRepository.save(rabat1);
+        rabatRepository.save(rabat2);
+        rabatRepository.save(rabat3);
         towarRepository.save(towar);
         klientRepository.save(klient);
     }

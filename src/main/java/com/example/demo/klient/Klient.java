@@ -1,5 +1,7 @@
 package com.example.demo.klient;
 
+import com.example.demo.rabat.Rabat;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,8 @@ public class Klient {
     private String miejscowosc;
     private String kodPocztowy;
     private String kraj;
+    @ManyToOne
+    private Rabat rabat;
 
     public Klient(String imie,
                   String nazwisko,
@@ -43,19 +47,37 @@ public class Klient {
         this.miejscowosc = miejscowosc;
         this.kodPocztowy = kodPocztowy;
         this.kraj = kraj;
+        this.rabat = null;
+    }
+
+    public Klient(String imie,
+                  String nazwisko,
+                  String telefon,
+                  String email,
+                  String nazwaFirmy,
+                  String NIP,
+                  String ulica,
+                  String nrLokalu,
+                  String miejscowosc,
+                  String kodPocztowy,
+                  String kraj,
+                  Rabat rabat) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.telefon = telefon;
+        this.email = email;
+        this.nazwaFirmy = nazwaFirmy;
+        this.NIP = NIP;
+        this.ulica = ulica;
+        this.nrLokalu = nrLokalu;
+        this.miejscowosc = miejscowosc;
+        this.kodPocztowy = kodPocztowy;
+        this.kraj = kraj;
+        this.rabat = rabat;
     }
 
     public Klient() {
     }
-
-    public Long getIdKlienta() {
-        return idKlienta;
-    }
-
-    public void setIdKlienta(Long idKlienta) {
-        this.idKlienta = idKlienta;
-    }
-
     public String getImie() {
         return imie;
     }
@@ -139,4 +161,12 @@ public class Klient {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
+
+    public Rabat getRabat() {
+        return rabat;
+    }
+
+    public void setRabat(Rabat rabat) {
+        this.rabat = rabat;
+    }
 }
