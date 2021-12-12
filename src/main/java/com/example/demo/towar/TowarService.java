@@ -40,7 +40,7 @@ public class TowarService {
 
     public void update(Long id, Towar towar) throws TowarNotFoundException {
         Towar towarToUpdate = findById(id);
-        towarToUpdate.setCena(towar.getCena());
+        towarToUpdate.setCenaNetto(towar.getCenaNetto());
         towarToUpdate.setIlosc(towar.getIlosc());
         towarToUpdate.setKategoria(towar.getKategoria());
         towarToUpdate.setProducent(towar.getProducent());
@@ -48,8 +48,8 @@ public class TowarService {
         towarRepository.save(towarToUpdate);
     }
 
-    public void delete(Towar pracownik) {
-        towarRepository.delete(pracownik);
+    public void delete(Towar towar) {
+        towarRepository.delete(towar);
     }
 
 }

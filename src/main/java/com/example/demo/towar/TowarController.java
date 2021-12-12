@@ -21,6 +21,7 @@ public class TowarController {
     private final ProducentService producentService;
     private final KategoriaService kategoriaService;
 
+    @Autowired
     public TowarController(TowarService towarService,
                            ProducentService producentService,
                            KategoriaService kategoriaService) {
@@ -28,9 +29,6 @@ public class TowarController {
         this.producentService = producentService;
         this.kategoriaService = kategoriaService;
     }
-
-    @Autowired
-
 
     @GetMapping("")
     public ResponseEntity<List<Towar>> getTowary() {
@@ -56,15 +54,15 @@ public class TowarController {
 
     @PostMapping()
     @ResponseBody
-    public ResponseEntity<HttpStatus> addTowar(@RequestBody Towar Towar) {
-        towarService.save(Towar);
+    public ResponseEntity<HttpStatus> addTowar(@RequestBody Towar towar) {
+        towarService.save(towar);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<HttpStatus> updateTowar(@PathVariable Long id, @RequestBody Towar Towar) throws TowarNotFoundException {
-        towarService.update(id, Towar);
+    public ResponseEntity<HttpStatus> updateTowar(@PathVariable Long id, @RequestBody Towar towar) throws TowarNotFoundException {
+        towarService.update(id, towar);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

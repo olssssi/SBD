@@ -3,7 +3,6 @@ package com.example.demo.zamowienie;
 import com.example.demo.exceptions.ZamowienieNotFoundException;
 import com.example.demo.klient.Klient;
 import com.example.demo.pracownik.Pracownik;
-import com.example.demo.stanZamowienia.StanZamowienia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

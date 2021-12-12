@@ -1,7 +1,6 @@
 package com.example.demo.towar;
 
 import com.example.demo.kategoria.Kategoria;
-import com.example.demo.cena.Cena;
 import com.example.demo.producent.Producent;
 
 import javax.persistence.*;
@@ -20,14 +19,17 @@ public class Towar {
     private Producent producent;
     @ManyToOne
     private Kategoria kategoria;
-    @OneToOne(mappedBy = "towar", cascade = CascadeType.ALL)
-    private Cena cena;
+    private Float cenaNetto;
+//    private Float cenaBrutto;
     private int ilosc;
 
-    public Towar(Producent producent, Kategoria kategoria, int ilosc) {
+    public Towar(Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
         this.producent = producent;
         this.kategoria = kategoria;
+        this.cenaNetto = cenaNetto;
         this.ilosc = ilosc;
+//        Float podatek = this.cenaNetto*this.kategoria.getStawkaVat();
+//        this.cenaBrutto = this.cenaNetto+podatek;
     }
 
     public Producent getProducent() {
@@ -46,20 +48,22 @@ public class Towar {
         this.kategoria = kategoria;
     }
 
-    public Cena getCena() {
-        return cena;
-    }
-
-    public void setCena(Cena cena) {
-        this.cena = cena;
-    }
-
     public int getIlosc() {
         return ilosc;
     }
 
     public void setIlosc(int ilosc) {
         this.ilosc = ilosc;
+    }
+
+    public Float getCenaNetto() {
+        return cenaNetto;
+    }
+
+    public void setCenaNetto(Float cena) {
+        this.cenaNetto = cena;
+//        Float podatek = this.cenaNetto*this.kategoria.getStawkaVat();
+//        this.cenaBrutto = this.cenaNetto+podatek;
     }
 }
 
