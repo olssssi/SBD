@@ -25,6 +25,10 @@ public class Faktura {
     public Faktura() {
     }
 
+    public Long getIdFaktury() {
+        return idFaktury;
+    }
+
     public Zamowienie getZamowienie() {
         return zamowienie;
     }

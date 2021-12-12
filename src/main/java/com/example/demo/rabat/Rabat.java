@@ -21,6 +21,10 @@ public class Rabat {
     public Rabat() {
     }
 
+    public Long getIdRabatu() {
+        return idRabatu;
+    }
+
     public String getNazwa() {
         return nazwa;
     }

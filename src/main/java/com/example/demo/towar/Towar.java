@@ -34,6 +34,10 @@ public class Towar {
         this.cenaBrutto = this.cenaNetto+podatek;
     }
 
+    public Long getIdTowaru() {
+        return idTowaru;
+    }
+
     public Producent getProducent() {
         return producent;
     }

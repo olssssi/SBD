@@ -14,6 +14,10 @@ public class Stanowisko {
     public Stanowisko() {
     }
 
+    public Long getIdStanowiska() {
+        return idStanowiska;
+    }
+
     public String getNazwa() {
         return nazwa;
     }

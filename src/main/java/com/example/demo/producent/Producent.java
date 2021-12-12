@@ -18,6 +18,10 @@ public class Producent {
     public Producent() {
     }
 
+    public Long getIdProducenta() {
+        return idProducenta;
+    }
+
     public String getNazwa() {
         return nazwa;
     }

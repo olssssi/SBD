@@ -30,6 +30,10 @@ public class Pozycja {
     public Pozycja() {
     }
 
+    public Long getNrPozycji() {
+        return nrPozycji;
+    }
+
     public Zamowienie getZamowienie() {
         return zamowienie;
     }

@@ -21,6 +21,10 @@ public class Kategoria {
     public Kategoria() {
     }
 
+    public Long getIdKategorii() {
+        return idKategorii;
+    }
+
     public String getNazwa() {
         return nazwa;
     }
