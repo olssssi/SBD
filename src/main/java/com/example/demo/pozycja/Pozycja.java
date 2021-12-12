@@ -2,6 +2,7 @@ package com.example.demo.pozycja;
 
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.towar.Towar;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -13,6 +14,8 @@ public class Pozycja {
     @Column(name = "nr_pozycji")
     private Long nrPozycji;
     @ManyToOne
+    @JoinColumn(name = "zamowienie_id")
+    @JsonIgnore
     private Zamowienie zamowienie;
     private int ilosc;
     @ManyToOne

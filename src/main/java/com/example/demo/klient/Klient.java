@@ -78,6 +78,11 @@ public class Klient {
 
     public Klient() {
     }
+
+    public Long getIdKlienta() {
+        return idKlienta;
+    }
+
     public String getImie() {
         return imie;
     }

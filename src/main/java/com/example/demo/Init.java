@@ -4,6 +4,8 @@ import com.example.demo.kategoria.Kategoria;
 import com.example.demo.kategoria.KategoriaRepository;
 import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientRepository;
+import com.example.demo.pozycja.Pozycja;
+import com.example.demo.pozycja.PozycjaRepository;
 import com.example.demo.pracownik.Pracownik;
 import com.example.demo.pracownik.PracownikRepository;
 import com.example.demo.producent.Producent;
@@ -14,6 +16,8 @@ import com.example.demo.stanowisko.StanowiskoRepository;
 import com.example.demo.towar.Towar;
 import com.example.demo.towar.TowarRepository;
 import com.example.demo.rabat.RabatRepository;
+import com.example.demo.zamowienie.Zamowienie;
+import com.example.demo.zamowienie.ZamowienieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -27,6 +31,8 @@ public class Init implements CommandLineRunner {
     private final ProducentRepository producentRepository;
     private final KlientRepository klientRepository;
     private final RabatRepository rabatRepository;
+    private final ZamowienieRepository zamowienieRepository;
+    private final PozycjaRepository pozycjaRepository;
 
     @Autowired
     public Init(PracownikRepository pracownikRepository,
@@ -35,7 +41,9 @@ public class Init implements CommandLineRunner {
                 TowarRepository towarRepository,
                 ProducentRepository producentRepository,
                 KlientRepository klientRepository,
-                RabatRepository rabatRepository) {
+                RabatRepository rabatRepository,
+                ZamowienieRepository zamowienieRepository,
+                PozycjaRepository pozycjaRepository) {
         this.pracownikRepository = pracownikRepository;
         this.stanowiskoRepository = stanowiskoRepository;
         this.kategoriaRepository = kategoriaRepository;
@@ -43,10 +51,14 @@ public class Init implements CommandLineRunner {
         this.producentRepository = producentRepository;
         this.klientRepository = klientRepository;
         this.rabatRepository = rabatRepository;
+        this.zamowienieRepository = zamowienieRepository;
+        this.pozycjaRepository = pozycjaRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        pozycjaRepository.deleteAll();
+        zamowienieRepository.deleteAll();
         pracownikRepository.deleteAll();
         stanowiskoRepository.deleteAll();
         towarRepository.deleteAll();
@@ -87,6 +99,8 @@ public class Init implements CommandLineRunner {
                 "Polska",
                 rabat3
         );
+        Zamowienie zamowienie = new Zamowienie(klient, pracownik);
+        Pozycja pozycja = new Pozycja(zamowienie, 2, towar);
 
         producentRepository.save(producent);
         stanowiskoRepository.save(stanowisko);
@@ -103,5 +117,8 @@ public class Init implements CommandLineRunner {
         rabatRepository.save(rabat3);
         towarRepository.save(towar);
         klientRepository.save(klient);
+        zamowienieRepository.save(zamowienie);
+        pozycjaRepository.save(pozycja);
+
     }
 }

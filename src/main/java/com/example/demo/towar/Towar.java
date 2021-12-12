@@ -20,7 +20,7 @@ public class Towar {
     @ManyToOne
     private Kategoria kategoria;
     private Float cenaNetto;
-//    private Float cenaBrutto;
+    private Float cenaBrutto;
     private int ilosc;
 
     public Towar(Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
@@ -28,8 +28,8 @@ public class Towar {
         this.kategoria = kategoria;
         this.cenaNetto = cenaNetto;
         this.ilosc = ilosc;
-//        Float podatek = this.cenaNetto*this.kategoria.getStawkaVat();
-//        this.cenaBrutto = this.cenaNetto+podatek;
+        Float podatek = this.cenaNetto*this.kategoria.getStawkaVat()/100;
+        this.cenaBrutto = this.cenaNetto+podatek;
     }
 
     public Producent getProducent() {
@@ -62,8 +62,12 @@ public class Towar {
 
     public void setCenaNetto(Float cena) {
         this.cenaNetto = cena;
-//        Float podatek = this.cenaNetto*this.kategoria.getStawkaVat();
-//        this.cenaBrutto = this.cenaNetto+podatek;
+        Float podatek = this.cenaNetto*this.kategoria.getStawkaVat()/100;
+        this.cenaBrutto = this.cenaNetto+podatek;
+    }
+
+    public Float getCenaBrutto() {
+        return cenaBrutto;
     }
 }
 
