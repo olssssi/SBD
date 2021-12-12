@@ -1,9 +1,11 @@
 package com.example.demo.zamowienie;
 
+import com.example.demo.faktura.Faktura;
 import com.example.demo.klient.Klient;
 import com.example.demo.pozycja.Pozycja;
 import com.example.demo.pracownik.Pracownik;
 import com.example.demo.stanZamowienia.StanZamowienia;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -22,12 +24,22 @@ public class Zamowienie {
     private StanZamowienia stanZamowienia;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "zamowienie")
     private Set<Pozycja> pozycje;
+    @ManyToOne
+    @JoinColumn(name = "faktura_id")
+    @JsonIgnore
+    private Faktura faktura;
 
     public Zamowienie(Klient klient, Pracownik pracownik) {
         this.klient = klient;
         this.pracownik = pracownik;
         this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
         this.pozycje=null;
+    }
+
+    public Zamowienie(Klient klient, Pracownik pracownik, Faktura faktura) {
+        this.klient = klient;
+        this.pracownik = pracownik;
+        this.faktura = faktura;
     }
 
     public Zamowienie() {
@@ -67,5 +79,17 @@ public class Zamowienie {
 
     public void setStanZamowienia(StanZamowienia stanZamowienia) {
         this.stanZamowienia = stanZamowienia;
+    }
+
+    public void setPozycje(Set<Pozycja> pozycje) {
+        this.pozycje = pozycje;
+    }
+
+    public Faktura getFaktura() {
+        return faktura;
+    }
+
+    public void setFaktura(Faktura faktura) {
+        this.faktura = faktura;
     }
 }

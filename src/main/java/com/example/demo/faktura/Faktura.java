@@ -3,6 +3,7 @@ package com.example.demo.faktura;
 import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -11,15 +12,16 @@ public class Faktura {
     @GeneratedValue
     @Column(name = "id_faktury")
     private Long idFaktury;
-    @ManyToOne
-    private Zamowienie zamowienie;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faktura")
+    private Set<Zamowienie> zamowienia;
 
     //TODO: trzeba dodać maksymalną datę realizacji zamówienia
     //TODO: trzeba dodać rzeczywista datę realizacji zamówienia
     //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
 
-    public Faktura(Zamowienie zamowienie) {
-        this.zamowienie = zamowienie;
+
+    public Faktura(Set<Zamowienie> zamowienia) {
+        this.zamowienia = zamowienia;
     }
 
     public Faktura() {
@@ -29,11 +31,11 @@ public class Faktura {
         return idFaktury;
     }
 
-    public Zamowienie getZamowienie() {
-        return zamowienie;
+    public Set<Zamowienie> getZamowienia() {
+        return zamowienia;
     }
 
-    public void setZamowienie(Zamowienie zamowienie) {
-        this.zamowienie = zamowienie;
+    public void setZamowienia(Set<Zamowienie> zamowienia) {
+        this.zamowienia = zamowienia;
     }
 }

@@ -30,8 +30,7 @@ public class FakturaService {
 
     public void update(Long id, Faktura faktura) throws FakturaNotFoundException {
         Faktura fakturaToUpdate = findById(id);
-        fakturaToUpdate.setZamowienie(faktura.getZamowienie());
-
+        fakturaToUpdate.setZamowienia(faktura.getZamowienia());
         fakturaRepository.save(fakturaToUpdate);
     }
 

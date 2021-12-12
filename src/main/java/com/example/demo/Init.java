@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.faktura.Faktura;
+import com.example.demo.faktura.FakturaRepository;
 import com.example.demo.kategoria.Kategoria;
 import com.example.demo.kategoria.KategoriaRepository;
 import com.example.demo.klient.Klient;
@@ -33,6 +35,7 @@ public class Init implements CommandLineRunner {
     private final RabatRepository rabatRepository;
     private final ZamowienieRepository zamowienieRepository;
     private final PozycjaRepository pozycjaRepository;
+    private final FakturaRepository fakturaRepository;
 
     @Autowired
     public Init(PracownikRepository pracownikRepository,
@@ -43,7 +46,8 @@ public class Init implements CommandLineRunner {
                 KlientRepository klientRepository,
                 RabatRepository rabatRepository,
                 ZamowienieRepository zamowienieRepository,
-                PozycjaRepository pozycjaRepository) {
+                PozycjaRepository pozycjaRepository,
+                FakturaRepository fakturaRepository) {
         this.pracownikRepository = pracownikRepository;
         this.stanowiskoRepository = stanowiskoRepository;
         this.kategoriaRepository = kategoriaRepository;
@@ -53,12 +57,14 @@ public class Init implements CommandLineRunner {
         this.rabatRepository = rabatRepository;
         this.zamowienieRepository = zamowienieRepository;
         this.pozycjaRepository = pozycjaRepository;
+        this.fakturaRepository = fakturaRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
         pozycjaRepository.deleteAll();
         zamowienieRepository.deleteAll();
+        fakturaRepository.deleteAll();
         pracownikRepository.deleteAll();
         stanowiskoRepository.deleteAll();
         towarRepository.deleteAll();
@@ -99,8 +105,13 @@ public class Init implements CommandLineRunner {
                 "Polska",
                 rabat3
         );
-        Zamowienie zamowienie = new Zamowienie(klient, pracownik);
-        Pozycja pozycja = new Pozycja(zamowienie, 2, towar);
+
+        Faktura faktura = new Faktura();
+        Zamowienie zamowienie1 = new Zamowienie(klient, pracownik, faktura);
+        Zamowienie zamowienie2 = new Zamowienie(klient, pracownik, faktura);
+        Pozycja pozycja1 = new Pozycja(zamowienie1, 2, towar);
+        Pozycja pozycja2 = new Pozycja(zamowienie2, 10, towar);
+
 
         producentRepository.save(producent);
         stanowiskoRepository.save(stanowisko);
@@ -117,8 +128,10 @@ public class Init implements CommandLineRunner {
         rabatRepository.save(rabat3);
         towarRepository.save(towar);
         klientRepository.save(klient);
-        zamowienieRepository.save(zamowienie);
-        pozycjaRepository.save(pozycja);
-
+        fakturaRepository.save(faktura);
+        zamowienieRepository.save(zamowienie1);
+        pozycjaRepository.save(pozycja1);
+        zamowienieRepository.save(zamowienie2);
+        pozycjaRepository.save(pozycja2);
     }
 }
