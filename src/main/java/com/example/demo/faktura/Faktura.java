@@ -14,6 +14,10 @@ public class Faktura {
     @ManyToOne
     private Zamowienie zamowienie;
 
+    //TODO: trzeba dodać maksymalną datę realizacji zamówienia
+    //TODO: trzeba dodać rzeczywista datę realizacji zamówienia
+    //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
+
     public Faktura(Zamowienie zamowienie) {
         this.zamowienie = zamowienie;
     }
