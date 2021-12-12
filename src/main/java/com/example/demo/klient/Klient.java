@@ -12,6 +12,7 @@ public class Klient {
     private String imie;
     private String nazwisko;
     private String telefon;
+    private String email;
     private String nazwaFirmy;
     private String NIP;
     private String ulica;
@@ -23,6 +24,7 @@ public class Klient {
     public Klient(String imie,
                   String nazwisko,
                   String telefon,
+                  String email,
                   String nazwaFirmy,
                   String NIP,
                   String ulica,
@@ -33,6 +35,7 @@ public class Klient {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.telefon = telefon;
+        this.email = email;
         this.nazwaFirmy = nazwaFirmy;
         this.NIP = NIP;
         this.ulica = ulica;
@@ -132,4 +135,8 @@ public class Klient {
     public void setKraj(String kraj) {
         this.kraj = kraj;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 }

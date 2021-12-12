@@ -21,6 +21,7 @@ public class KlientService{
         klientToUpdate.setImie(klient.getImie());
         klientToUpdate.setNazwisko(klient.getNazwisko());
         klientToUpdate.setTelefon(klient.getTelefon());
+        klientToUpdate.setEmail(klient.getEmail());
         klientToUpdate.setNazwaFirmy(klient.getNazwaFirmy());
         klientToUpdate.setNIP(klient.getNIP());
         klientToUpdate.setUlica(klient.getUlica());
