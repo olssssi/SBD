@@ -40,6 +40,8 @@ public class Zamowienie {
         this.klient = klient;
         this.pracownik = pracownik;
         this.faktura = faktura;
+        this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
+        this.pozycje=null;
     }
 
     public Zamowienie() {
