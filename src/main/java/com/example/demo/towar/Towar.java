@@ -13,21 +13,20 @@ public class Towar {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_towaru")
     private Long idTowaru;
     @ManyToOne
     private Producent producent;
     @ManyToOne
     private Kategoria kategoria;
-    @ManyToOne
+    @OneToOne(mappedBy = "towar", cascade = CascadeType.ALL)
     private Cena cena;
     private int ilosc;
 
-    public Towar(Producent producent, Kategoria kategoria, Cena cena, int ilosc) {
+    public Towar(Producent producent, Kategoria kategoria, int ilosc) {
         this.producent = producent;
         this.kategoria = kategoria;
-        this.cena = cena;
         this.ilosc = ilosc;
     }
 
