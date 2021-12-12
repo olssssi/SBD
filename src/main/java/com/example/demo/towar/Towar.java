@@ -19,11 +19,13 @@ public class Towar {
     private Producent producent;
     @ManyToOne
     private Kategoria kategoria;
+    private String nazwa;
     private Float cenaNetto;
     private Float cenaBrutto;
     private int ilosc;
 
-    public Towar(Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
+    public Towar(String nazwa, Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
+        this.nazwa = nazwa;
         this.producent = producent;
         this.kategoria = kategoria;
         this.cenaNetto = cenaNetto;
@@ -68,6 +70,14 @@ public class Towar {
 
     public Float getCenaBrutto() {
         return cenaBrutto;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
     }
 }
 

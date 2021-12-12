@@ -83,7 +83,7 @@ public class Init implements CommandLineRunner {
         Kategoria kategoria6 = new Kategoria("Okapy", 23F);
         Kategoria kategoria7 = new Kategoria("Piekarniki", 23F);
 
-        Towar towar = new Towar(producent, kategoria1, 1000F, 500);
+        Towar towar = new Towar("Lodówka BEKO RCSK300K30XBRN 181cm Ciemny Inox", producent, kategoria1, 1000F, 500);
 
         Klient klient = new Klient(
                 "Agnieszka",

@@ -40,6 +40,7 @@ public class TowarService {
 
     public void update(Long id, Towar towar) throws TowarNotFoundException {
         Towar towarToUpdate = findById(id);
+        towarToUpdate.setNazwa(towar.getNazwa());
         towarToUpdate.setCenaNetto(towar.getCenaNetto());
         towarToUpdate.setIlosc(towar.getIlosc());
         towarToUpdate.setKategoria(towar.getKategoria());
