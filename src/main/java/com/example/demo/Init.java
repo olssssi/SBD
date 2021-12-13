@@ -89,7 +89,8 @@ public class Init implements CommandLineRunner {
         Kategoria kategoria6 = new Kategoria("Okapy", 23F);
         Kategoria kategoria7 = new Kategoria("Piekarniki", 23F);
 
-        Towar towar = new Towar("Lodówka BEKO RCSK300K30XBRN 181cm Ciemny Inox", producent, kategoria1, 1000F, 500);
+        Towar towar1 = new Towar("Lodówka BEKO RCSK300K30XBRN 181cm Ciemny Inox", producent, kategoria1, 1000F, 500);
+        Towar towar2 = new Towar("Lodówka BEKO XCSK3052XBKNWS 181cm Jasny Inox", producent, kategoria1, 1500F, 1000);
 
         Klient klient = new Klient(
                 "Agnieszka",
@@ -109,8 +110,9 @@ public class Init implements CommandLineRunner {
         Faktura faktura = new Faktura();
         Zamowienie zamowienie1 = new Zamowienie(klient, pracownik, faktura);
         Zamowienie zamowienie2 = new Zamowienie(klient, pracownik, faktura);
-        Pozycja pozycja1 = new Pozycja(zamowienie1, 2, towar);
-        Pozycja pozycja2 = new Pozycja(zamowienie2, 10, towar);
+        Pozycja pozycja1 = new Pozycja(zamowienie1, 2, towar1);
+        Pozycja pozycja2 = new Pozycja(zamowienie1, 10, towar1);
+        Pozycja pozycja3 = new Pozycja(zamowienie2, 2, towar2);
 
 
         producentRepository.save(producent);
@@ -126,12 +128,14 @@ public class Init implements CommandLineRunner {
         rabatRepository.save(rabat1);
         rabatRepository.save(rabat2);
         rabatRepository.save(rabat3);
-        towarRepository.save(towar);
+        towarRepository.save(towar1);
+        towarRepository.save(towar2);
         klientRepository.save(klient);
         fakturaRepository.save(faktura);
         zamowienieRepository.save(zamowienie1);
         pozycjaRepository.save(pozycja1);
         zamowienieRepository.save(zamowienie2);
         pozycjaRepository.save(pozycja2);
+        pozycjaRepository.save(pozycja3);
     }
 }

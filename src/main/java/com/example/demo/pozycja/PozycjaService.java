@@ -1,6 +1,8 @@
 package com.example.demo.pozycja;
 
 import com.example.demo.exceptions.PozycjaNotFoundException;
+import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.zamowienie.Zamowienie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class PozycjaService {
     public Pozycja findById(Long id) throws PozycjaNotFoundException {
         return pozycjaRepository.findById(id)
                 .orElseThrow(PozycjaNotFoundException::new);
+    }
+
+    public List<Pozycja> findByZamowienie(Zamowienie zamowienie) throws ZamowienieNotFoundException {
+        return pozycjaRepository.findByZamowienie(zamowienie);
     }
 
     public List<Pozycja> findAll() {
