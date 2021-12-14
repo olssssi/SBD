@@ -27,6 +27,12 @@ public class Pozycja {
         this.towar = towar;
     }
 
+//    public Pozycja(int ilosc, Towar towar) {
+//        this.zamowienie = null;
+//        this.ilosc = ilosc;
+//        this.towar = towar;
+//    }
+
     public Pozycja() {
     }
 

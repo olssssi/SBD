@@ -111,8 +111,13 @@ public class Init implements CommandLineRunner {
         Zamowienie zamowienie1 = new Zamowienie(klient, pracownik, faktura);
         Zamowienie zamowienie2 = new Zamowienie(klient, pracownik, faktura);
         Pozycja pozycja1 = new Pozycja(zamowienie1, 2, towar1);
-        Pozycja pozycja2 = new Pozycja(zamowienie1, 10, towar1);
-        Pozycja pozycja3 = new Pozycja(zamowienie2, 2, towar2);
+        Pozycja pozycja2 = new Pozycja( zamowienie1, 10, towar1);
+        Pozycja pozycja3 = new Pozycja(zamowienie2,  2, towar2);
+
+//        Zamowienie zamowienie1 = new Zamowienie(klient, pracownik, Set.of(pozycja1, pozycja2));
+//        Zamowienie zamowienie2 = new Zamowienie(klient, pracownik, Set.of(pozycja3));
+//
+//        zamowienie1.setFaktura(faktura);
 
 
         producentRepository.save(producent);

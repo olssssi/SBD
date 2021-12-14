@@ -36,6 +36,13 @@ public class Zamowienie {
         this.pozycje=null;
     }
 
+//    public Zamowienie(Klient klient, Pracownik pracownik, Set<Pozycja> pozycje) {
+//        this.klient = klient;
+//        this.pracownik = pracownik;
+//        this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
+//        this.pozycje=pozycje;
+//    }
+
     public Zamowienie(Klient klient, Pracownik pracownik, Faktura faktura) {
         this.klient = klient;
         this.pracownik = pracownik;
@@ -45,6 +52,7 @@ public class Zamowienie {
     }
 
     public Zamowienie() {
+        this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
     }
 
 //    public void addPozycja(Pozycja pozycja){
