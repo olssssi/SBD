@@ -3,6 +3,7 @@ package com.example.demo.zamowienie;
 import com.example.demo.exceptions.KlientNotFoundException;
 import com.example.demo.exceptions.PracownikNotFoundException;
 import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.faktura.Faktura;
 import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientService;
 import com.example.demo.pracownik.Pracownik;
@@ -64,6 +65,13 @@ public class ZamowienieController {
     @ResponseBody
     public ResponseEntity<HttpStatus> updateZamowienie(@PathVariable Long id, @RequestBody Zamowienie zamowienie) throws ZamowienieNotFoundException {
         zamowienieService.update(id, zamowienie);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/faktura/{id}")
+    @ResponseBody
+    public ResponseEntity<HttpStatus> assignFakturaToZamowienie(@PathVariable Long id, @RequestBody Faktura faktura) throws ZamowienieNotFoundException {
+        zamowienieService.assignFaktura(id, faktura);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

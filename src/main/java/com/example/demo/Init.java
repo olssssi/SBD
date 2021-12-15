@@ -108,15 +108,17 @@ public class Init implements CommandLineRunner {
         );
 
         Faktura faktura = new Faktura();
-        Zamowienie zamowienie1 = new Zamowienie(klient, pracownik, faktura);
-        Zamowienie zamowienie2 = new Zamowienie(klient, pracownik, faktura);
+        Zamowienie zamowienie1 = new Zamowienie(klient, pracownik);
+        Zamowienie zamowienie2 = new Zamowienie(klient, pracownik);
         Pozycja pozycja1 = new Pozycja(zamowienie1, 2, towar1);
         Pozycja pozycja2 = new Pozycja( zamowienie1, 10, towar1);
         Pozycja pozycja3 = new Pozycja(zamowienie2,  2, towar2);
 
+        zamowienie1.setFaktura(faktura);
+        zamowienie2.setFaktura(faktura);
+
 //        Zamowienie zamowienie1 = new Zamowienie(klient, pracownik, Set.of(pozycja1, pozycja2));
 //        Zamowienie zamowienie2 = new Zamowienie(klient, pracownik, Set.of(pozycja3));
-//
 //        zamowienie1.setFaktura(faktura);
 
 

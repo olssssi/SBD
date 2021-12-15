@@ -43,13 +43,13 @@ public class Zamowienie {
 //        this.pozycje=pozycje;
 //    }
 
-    public Zamowienie(Klient klient, Pracownik pracownik, Faktura faktura) {
-        this.klient = klient;
-        this.pracownik = pracownik;
-        this.faktura = faktura;
-        this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
-        this.pozycje=null;
-    }
+//    public Zamowienie(Klient klient, Pracownik pracownik, Faktura faktura) {
+//        this.klient = klient;
+//        this.pracownik = pracownik;
+//        this.faktura = faktura;
+//        this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
+//        this.pozycje=null;
+//    }
 
     public Zamowienie() {
         this.stanZamowienia = StanZamowienia.DO_REALIZACJI;

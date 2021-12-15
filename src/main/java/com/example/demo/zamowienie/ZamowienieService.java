@@ -1,6 +1,7 @@
 package com.example.demo.zamowienie;
 
 import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.faktura.Faktura;
 import com.example.demo.klient.Klient;
 import com.example.demo.pracownik.Pracownik;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,13 @@ public class ZamowienieService {
         zamowienieToUpdate.setPracownik(zamowienie.getPracownik());
 
         zamowienieRepository.save(zamowienieToUpdate);
+    }
+
+    public void assignFaktura(Long id, Faktura faktura) throws ZamowienieNotFoundException {
+        Zamowienie zamowienieToAssign = findById(id);
+        zamowienieToAssign.setFaktura(faktura);
+
+        zamowienieRepository.save(zamowienieToAssign);
     }
 
     public void delete(Zamowienie zamowienie) {

@@ -3,6 +3,7 @@ package com.example.demo.faktura;
 import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,11 +21,12 @@ public class Faktura {
     //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
 
 
-    public Faktura(Set<Zamowienie> zamowienia) {
-        this.zamowienia = zamowienia;
-    }
+//    public Faktura(Set<Zamowienie> zamowienia) {
+//        this.zamowienia = zamowienia;
+//    }
 
     public Faktura() {
+        this.zamowienia = new HashSet<>();
     }
 
     public Long getIdFaktury() {
