@@ -1,6 +1,5 @@
 package com.example.demo.towar;
 
-import com.example.demo.exceptions.TowarNotFoundException;
 import com.example.demo.kategoria.Kategoria;
 import com.example.demo.producent.Producent;
 import org.springframework.beans.factory.annotation.Autowired;

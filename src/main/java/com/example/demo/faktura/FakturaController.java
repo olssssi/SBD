@@ -1,6 +1,5 @@
 package com.example.demo.faktura;
 
-import com.example.demo.exceptions.FakturaNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

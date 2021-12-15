@@ -1,12 +1,11 @@
-package com.example.demo.exceptions;
+package com.example.demo.producent;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ZamowienieNotFoundException extends Exception{
+public class ProducentNotFoundException extends Exception{
     private static final long serialVersionUID = 1L;
 
-    public ZamowienieNotFoundException() {}
+    public ProducentNotFoundException() {}
 }
-

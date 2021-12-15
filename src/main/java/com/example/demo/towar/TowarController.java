@@ -1,8 +1,7 @@
 package com.example.demo.towar;
 
-import com.example.demo.exceptions.KategoriaNotFoundException;
-import com.example.demo.exceptions.ProducentNotFoundException;
-import com.example.demo.exceptions.TowarNotFoundException;
+import com.example.demo.kategoria.KategoriaNotFoundException;
+import com.example.demo.producent.ProducentNotFoundException;
 import com.example.demo.kategoria.Kategoria;
 import com.example.demo.kategoria.KategoriaService;
 import com.example.demo.producent.Producent;

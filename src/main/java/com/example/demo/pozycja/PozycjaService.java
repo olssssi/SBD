@@ -1,7 +1,7 @@
 package com.example.demo.pozycja;
 
-import com.example.demo.exceptions.PozycjaNotFoundException;
-import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.faktura.Faktura;
+import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +41,13 @@ public class PozycjaService {
         pozycjaToUpdate.setIlosc(pozycja.getIlosc());
 
         pozycjaRepository.save(pozycjaToUpdate);
+    }
+
+    public void assignZamowienie(Long id, Zamowienie zamowienie) throws PozycjaNotFoundException {
+        Pozycja pozycjaToAssign = findById(id);
+        pozycjaToAssign.setZamowienie(zamowienie);
+
+        pozycjaRepository.save(pozycjaToAssign);
     }
 
     public void delete(Pozycja pozycja) {

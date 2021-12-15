@@ -1,6 +1,5 @@
 package com.example.demo.klient;
 
-import com.example.demo.exceptions.KlientNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

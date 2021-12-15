@@ -1,7 +1,7 @@
 package com.example.demo.pozycja;
 
-import com.example.demo.exceptions.PozycjaNotFoundException;
-import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.faktura.Faktura;
+import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +52,13 @@ public class PozycjaController {
     @ResponseBody
     public ResponseEntity<HttpStatus> updatePozycja(@PathVariable Long id, @RequestBody Pozycja pozycja) throws PozycjaNotFoundException {
         pozycjaService.update(id, pozycja);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/zamowienie/{id}")
+    @ResponseBody
+    public ResponseEntity<HttpStatus> assignZamowienieToPozycja(@PathVariable Long id, @RequestBody Zamowienie zamowienie) throws PozycjaNotFoundException {
+        pozycjaService.assignZamowienie(id, zamowienie);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

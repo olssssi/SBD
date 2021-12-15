@@ -1,8 +1,7 @@
 package com.example.demo.zamowienie;
 
-import com.example.demo.exceptions.KlientNotFoundException;
-import com.example.demo.exceptions.PracownikNotFoundException;
-import com.example.demo.exceptions.ZamowienieNotFoundException;
+import com.example.demo.klient.KlientNotFoundException;
+import com.example.demo.pracownik.PracownikNotFoundException;
 import com.example.demo.faktura.Faktura;
 import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientService;

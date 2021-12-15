@@ -21,17 +21,17 @@ public class Pozycja {
     @ManyToOne
     private Towar towar;
 
-    public Pozycja(Zamowienie zamowienie, int ilosc, Towar towar) {
-        this.zamowienie = zamowienie;
-        this.ilosc = ilosc;
-        this.towar = towar;
-    }
-
-//    public Pozycja(int ilosc, Towar towar) {
-//        this.zamowienie = null;
+//    public Pozycja(Zamowienie zamowienie, int ilosc, Towar towar) {
+//        this.zamowienie = zamowienie;
 //        this.ilosc = ilosc;
 //        this.towar = towar;
 //    }
+
+    public Pozycja(int ilosc, Towar towar) {
+        this.zamowienie = null;
+        this.ilosc = ilosc;
+        this.towar = towar;
+    }
 
     public Pozycja() {
     }

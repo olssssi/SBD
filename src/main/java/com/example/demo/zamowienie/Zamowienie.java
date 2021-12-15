@@ -8,6 +8,7 @@ import com.example.demo.stanZamowienia.StanZamowienia;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,7 +34,7 @@ public class Zamowienie {
         this.klient = klient;
         this.pracownik = pracownik;
         this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
-        this.pozycje=null;
+        this.pozycje = new HashSet<>();
     }
 
 //    public Zamowienie(Klient klient, Pracownik pracownik, Set<Pozycja> pozycje) {
@@ -52,6 +53,7 @@ public class Zamowienie {
 //    }
 
     public Zamowienie() {
+        this.pozycje = new HashSet<>();
         this.stanZamowienia = StanZamowienia.DO_REALIZACJI;
     }
 

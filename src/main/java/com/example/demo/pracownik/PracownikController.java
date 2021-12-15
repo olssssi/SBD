@@ -1,6 +1,5 @@
 package com.example.demo.pracownik;
 
-import com.example.demo.exceptions.PracownikNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

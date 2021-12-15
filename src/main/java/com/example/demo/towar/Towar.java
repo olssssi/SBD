@@ -8,9 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Towar {
-    public Towar() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_towaru")
@@ -23,6 +20,11 @@ public class Towar {
     private Float cenaNetto;
     private Float cenaBrutto;
     private int ilosc;
+
+
+
+    public Towar() {
+    }
 
     public Towar(String nazwa, Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
         this.nazwa = nazwa;
