@@ -1,6 +1,7 @@
 package com.example.demo.pracownik;
 
 import com.example.demo.stanowisko.Stanowisko;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -15,6 +16,8 @@ public class Pracownik {
     private String nazwisko;
     private String telefon;
     @ManyToOne
+    @JoinColumn(name = "stanowisko_id")
+    @JsonIgnore
     private Stanowisko stanowisko;
 
     public Pracownik(String imie, String nazwisko, String telefon, Stanowisko stanowisko) {

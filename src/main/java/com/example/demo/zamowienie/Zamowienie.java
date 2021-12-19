@@ -19,11 +19,15 @@ public class Zamowienie {
     @Column(name = "id_zamowienia")
     private Long idZamowienia;
     @ManyToOne
+    @JoinColumn(name = "klient_id")
+    @JsonIgnore
     private Klient klient;
     @ManyToOne
+    @JoinColumn(name = "pracownik_id")
+    @JsonIgnore
     private Pracownik pracownik;
     private StanZamowienia stanZamowienia;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zamowienie")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zamowienie", cascade = CascadeType.ALL)
     private Set<Pozycja> pozycje;
     @ManyToOne
     @JoinColumn(name = "faktura_id")

@@ -3,6 +3,8 @@ package com.example.demo.pozycja;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.towar.Towar;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -19,6 +21,8 @@ public class Pozycja {
     private Zamowienie zamowienie;
     private int ilosc;
     @ManyToOne
+    @JoinColumn(name = "towar_id")
+    @JsonIgnore
     private Towar towar;
 
 //    public Pozycja(Zamowienie zamowienie, int ilosc, Towar towar) {

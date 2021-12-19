@@ -1,9 +1,12 @@
 package com.example.demo.towar;
 
 import com.example.demo.kategoria.Kategoria;
+import com.example.demo.pozycja.Pozycja;
 import com.example.demo.producent.Producent;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -20,10 +23,16 @@ public class Towar {
     private Float cenaNetto;
     private Float cenaBrutto;
     private int ilosc;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zamowienie", cascade = CascadeType.ALL)
+    private Set<Pozycja> pozycje;
 
-
+//    @PreRemove
+//    private void preRemove() {
+//        pozycje.forEach(pozycja -> pozycja.);
+//    }
 
     public Towar() {
+        this.pozycje = new HashSet<>();
     }
 
     public Towar(String nazwa, Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
@@ -34,6 +43,7 @@ public class Towar {
         this.ilosc = ilosc;
         Float podatek = this.cenaNetto*this.kategoria.getStawkaVat()/100;
         this.cenaBrutto = this.cenaNetto+podatek;
+        this.pozycje = new HashSet<>();
     }
 
     public Long getIdTowaru() {

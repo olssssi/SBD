@@ -3,6 +3,7 @@ package com.example.demo.zamowienie;
 import com.example.demo.faktura.Faktura;
 import com.example.demo.klient.Klient;
 import com.example.demo.pracownik.Pracownik;
+import com.example.demo.stanZamowienia.StanZamowienia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,11 +37,9 @@ public class ZamowienieService {
         zamowienieRepository.save(zamowienie);
     }
 
-    public void update(Long id, Zamowienie zamowienie) throws ZamowienieNotFoundException {
+    public void updateStan(Long id, StanZamowienia stanZamowienia) throws ZamowienieNotFoundException {
         Zamowienie zamowienieToUpdate = findById(id);
-        zamowienieToUpdate.setStanZamowienia(zamowienie.getStanZamowienia());
-        zamowienieToUpdate.setKlient(zamowienie.getKlient());
-        zamowienieToUpdate.setPracownik(zamowienie.getPracownik());
+        zamowienieToUpdate.setStanZamowienia(stanZamowienia);
 
         zamowienieRepository.save(zamowienieToUpdate);
     }

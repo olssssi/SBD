@@ -7,6 +7,7 @@ import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientService;
 import com.example.demo.pracownik.Pracownik;
 import com.example.demo.pracownik.PracownikService;
+import com.example.demo.stanZamowienia.StanZamowienia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +54,12 @@ public class ZamowienieController {
         return new ResponseEntity<>(zamowienieService.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/stan/{id}")
+    public ResponseEntity<StanZamowienia> getStanZamowienia(@PathVariable Long id) throws ZamowienieNotFoundException {
+        Zamowienie zamowienie = zamowienieService.findById(id);
+        return new ResponseEntity<>(zamowienie.getStanZamowienia(), HttpStatus.OK);
+    }
+
     @PostMapping()
     @ResponseBody
     public ResponseEntity<HttpStatus> addZamowienie(@RequestBody Zamowienie zamowienie) {
@@ -62,8 +69,9 @@ public class ZamowienieController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<HttpStatus> updateZamowienie(@PathVariable Long id, @RequestBody Zamowienie zamowienie) throws ZamowienieNotFoundException {
-        zamowienieService.update(id, zamowienie);
+    public ResponseEntity<HttpStatus> updateZamowienie(@PathVariable Long id, @RequestBody StanZamowienia stanZamowienia) throws ZamowienieNotFoundException {
+        zamowienieService.updateStan(id, stanZamowienia);
+        Zamowienie zamowienie = zamowienieService.findById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

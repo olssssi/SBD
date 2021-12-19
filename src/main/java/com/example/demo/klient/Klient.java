@@ -1,6 +1,9 @@
 package com.example.demo.klient;
 
 import com.example.demo.rabat.Rabat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -22,7 +25,9 @@ public class Klient {
     private String miejscowosc;
     private String kodPocztowy;
     private String kraj;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rabat_id")
+    @JsonIgnore
     private Rabat rabat;
 
     public Klient(String imie,
@@ -50,31 +55,31 @@ public class Klient {
         this.rabat = null;
     }
 
-    public Klient(String imie,
-                  String nazwisko,
-                  String telefon,
-                  String email,
-                  String nazwaFirmy,
-                  String NIP,
-                  String ulica,
-                  String nrLokalu,
-                  String miejscowosc,
-                  String kodPocztowy,
-                  String kraj,
-                  Rabat rabat) {
-        this.imie = imie;
-        this.nazwisko = nazwisko;
-        this.telefon = telefon;
-        this.email = email;
-        this.nazwaFirmy = nazwaFirmy;
-        this.NIP = NIP;
-        this.ulica = ulica;
-        this.nrLokalu = nrLokalu;
-        this.miejscowosc = miejscowosc;
-        this.kodPocztowy = kodPocztowy;
-        this.kraj = kraj;
-        this.rabat = rabat;
-    }
+//    public Klient(String imie,
+//                  String nazwisko,
+//                  String telefon,
+//                  String email,
+//                  String nazwaFirmy,
+//                  String NIP,
+//                  String ulica,
+//                  String nrLokalu,
+//                  String miejscowosc,
+//                  String kodPocztowy,
+//                  String kraj,
+//                  Rabat rabat) {
+//        this.imie = imie;
+//        this.nazwisko = nazwisko;
+//        this.telefon = telefon;
+//        this.email = email;
+//        this.nazwaFirmy = nazwaFirmy;
+//        this.NIP = NIP;
+//        this.ulica = ulica;
+//        this.nrLokalu = nrLokalu;
+//        this.miejscowosc = miejscowosc;
+//        this.kodPocztowy = kodPocztowy;
+//        this.kraj = kraj;
+//        this.rabat = rabat;
+//    }
 
     public Klient() {
     }

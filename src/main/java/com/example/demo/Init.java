@@ -103,9 +103,10 @@ public class Init implements CommandLineRunner {
                 "5/2",
                 "Białystok",
                 "15-058",
-                "Polska",
-                rabat3
+                "Polska"
         );
+
+        klient.setRabat(rabat3);
 
         Faktura faktura = new Faktura();
         Zamowienie zamowienie1 = new Zamowienie(klient, pracownik);

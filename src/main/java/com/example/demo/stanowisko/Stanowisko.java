@@ -1,6 +1,11 @@
 package com.example.demo.stanowisko;
 
+import com.example.demo.klient.Klient;
+import com.example.demo.pracownik.Pracownik;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -10,8 +15,16 @@ public class Stanowisko {
     @Column(name = "id_stanowiska")
     private Long idStanowiska;
     private String nazwa;
+    @OneToMany(mappedBy = "stanowisko")
+    private Set<Pracownik> pracownicy;
+
+    @PreRemove
+    private void preRemove() {
+        pracownicy.forEach( pracownik -> pracownik.setStanowisko(null));
+    }
 
     public Stanowisko() {
+        this.pracownicy = new HashSet<>();
     }
 
     public Long getIdStanowiska() {
@@ -28,5 +41,13 @@ public class Stanowisko {
 
     public Stanowisko(String nazwa) {
         this.nazwa = nazwa;
+    }
+
+    public Set<Pracownik> getPracownicy() {
+        return pracownicy;
+    }
+
+    public void setPracownicy(Set<Pracownik> pracownicy) {
+        this.pracownicy = pracownicy;
     }
 }

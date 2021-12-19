@@ -1,6 +1,8 @@
 package com.example.demo.faktura;
 
 import com.example.demo.zamowienie.Zamowienie;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
@@ -16,20 +18,21 @@ public class Faktura {
     private Long idFaktury;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "faktura")
     private Set<Zamowienie> zamowienia;
-    private OffsetDateTime maxDataRealizacji;
+//    private OffsetDateTime maxDataRealizacji;
     private OffsetDateTime dataRealizacji;
+
+    @PreRemove
+    private void preRemove() {
+        zamowienia.forEach( zamowienie -> zamowienie.setFaktura(null));
+    }
 
     //TODO: trzeba dodać maksymalną datę realizacji zamówienia
     //TODO: trzeba dodać rzeczywista datę realizacji zamówienia
     //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
 
-
-//    public Faktura(Set<Zamowienie> zamowienia) {
-//        this.zamowienia = zamowienia;
-//    }
-
     public Faktura() {
         this.zamowienia = new HashSet<>();
+//        this.maxDataRealizacji = OffsetDateTime.now().plusDays(30); //Ustawiam maksymalną datę realizacji faktury na +30 dni od tworzenia
     }
 
     public Long getIdFaktury() {
