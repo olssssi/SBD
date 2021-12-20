@@ -1,9 +1,12 @@
 package com.example.demo.towar;
 
 import com.example.demo.kategoria.Kategoria;
+import com.example.demo.pozycja.Pozycja;
 import com.example.demo.producent.Producent;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -12,18 +15,22 @@ public class Towar {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_towaru")
     private Long idTowaru;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "producent_id")
     private Producent producent;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "kategoria_id")
     private Kategoria kategoria;
     private String nazwa;
     private Float cenaNetto;
     private Float cenaBrutto;
     private int ilosc;
-
-
+    @OneToMany(mappedBy = "towar", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Pozycja> pozycje;
 
     public Towar() {
+        this.pozycje = new HashSet<>();
     }
 
     public Towar(String nazwa, Producent producent, Kategoria kategoria, Float cenaNetto, int ilosc) {
@@ -34,6 +41,7 @@ public class Towar {
         this.ilosc = ilosc;
         Float podatek = this.cenaNetto*this.kategoria.getStawkaVat()/100;
         this.cenaBrutto = this.cenaNetto+podatek;
+        this.pozycje = new HashSet<>();
     }
 
     public Long getIdTowaru() {

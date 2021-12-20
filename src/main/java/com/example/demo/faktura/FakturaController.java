@@ -35,13 +35,6 @@ public class FakturaController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    @ResponseBody
-    public ResponseEntity<HttpStatus> updateFaktura(@PathVariable Long id, @RequestBody Faktura faktura) throws FakturaNotFoundException {
-        fakturaService.update(id, faktura);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> removeFaktura(@PathVariable Long id) throws FakturaNotFoundException {
         fakturaService.delete(fakturaService.findById(id));

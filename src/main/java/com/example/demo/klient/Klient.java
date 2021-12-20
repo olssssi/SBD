@@ -1,8 +1,10 @@
 package com.example.demo.klient;
 
 import com.example.demo.rabat.Rabat;
+import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -22,8 +24,12 @@ public class Klient {
     private String miejscowosc;
     private String kodPocztowy;
     private String kraj;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rabat_id")
     private Rabat rabat;
+    @OneToMany(mappedBy = "klient", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Zamowienie> zamowienia;
 
     public Klient(String imie,
                   String nazwisko,
@@ -163,9 +169,13 @@ public class Klient {
         this.kraj = kraj;
     }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Rabat getRabat() {
         return rabat;

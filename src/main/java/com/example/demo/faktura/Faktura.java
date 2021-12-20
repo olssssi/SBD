@@ -14,19 +14,19 @@ public class Faktura {
     @GeneratedValue
     @Column(name = "id_faktury")
     private Long idFaktury;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faktura")
+    @OneToMany(mappedBy = "faktura")
     private Set<Zamowienie> zamowienia;
     private OffsetDateTime maxDataRealizacji;
     private OffsetDateTime dataRealizacji;
 
+    @PreRemove
+    public void preRemove(){
+        zamowienia.forEach(zamowienie -> zamowienie.setFaktura(null));
+    }
+
     //TODO: trzeba dodać maksymalną datę realizacji zamówienia
     //TODO: trzeba dodać rzeczywista datę realizacji zamówienia
     //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
-
-
-//    public Faktura(Set<Zamowienie> zamowienia) {
-//        this.zamowienia = zamowienia;
-//    }
 
     public Faktura() {
         this.zamowienia = new HashSet<>();
@@ -36,11 +36,4 @@ public class Faktura {
         return idFaktury;
     }
 
-    public Set<Zamowienie> getZamowienia() {
-        return zamowienia;
-    }
-
-    public void setZamowienia(Set<Zamowienie> zamowienia) {
-        this.zamowienia = zamowienia;
-    }
 }

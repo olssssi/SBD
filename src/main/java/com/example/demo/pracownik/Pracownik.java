@@ -1,8 +1,10 @@
 package com.example.demo.pracownik;
 
 import com.example.demo.stanowisko.Stanowisko;
+import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -14,8 +16,16 @@ public class Pracownik {
     private String imie;
     private String nazwisko;
     private String telefon;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "stanowisko_id")
     private Stanowisko stanowisko;
+    @OneToMany(mappedBy = "pracownik")
+    private Set<Zamowienie> zamowienia;
+
+    @PreRemove
+    public void preRemove(){
+        zamowienia.forEach(zamowienie -> zamowienie.setPracownik(null));
+    }
 
     public Pracownik(String imie, String nazwisko, String telefon, Stanowisko stanowisko) {
         this.imie = imie;

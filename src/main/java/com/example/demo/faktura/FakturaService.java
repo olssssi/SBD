@@ -27,12 +27,6 @@ public class FakturaService {
         fakturaRepository.save(cena);
     }
 
-    public void update(Long id, Faktura faktura) throws FakturaNotFoundException {
-        Faktura fakturaToUpdate = findById(id);
-        fakturaToUpdate.setZamowienia(faktura.getZamowienia());
-        fakturaRepository.save(fakturaToUpdate);
-    }
-
     public void delete(Faktura faktura) {
         fakturaRepository.delete(faktura);
     }

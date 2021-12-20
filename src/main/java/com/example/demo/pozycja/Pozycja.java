@@ -2,7 +2,6 @@ package com.example.demo.pozycja;
 
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.towar.Towar;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -13,19 +12,13 @@ public class Pozycja {
     @GeneratedValue
     @Column(name = "nr_pozycji")
     private Long nrPozycji;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "zamowienie_id")
-    @JsonIgnore
     private Zamowienie zamowienie;
     private int ilosc;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "towar_id")
     private Towar towar;
-
-//    public Pozycja(Zamowienie zamowienie, int ilosc, Towar towar) {
-//        this.zamowienie = zamowienie;
-//        this.ilosc = ilosc;
-//        this.towar = towar;
-//    }
 
     public Pozycja(int ilosc, Towar towar) {
         this.zamowienie = null;
