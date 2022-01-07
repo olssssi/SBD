@@ -6,6 +6,7 @@ import com.example.demo.kategoria.Kategoria;
 import com.example.demo.kategoria.KategoriaRepository;
 import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientRepository;
+import com.example.demo.klient.KlientService;
 import com.example.demo.pozycja.Pozycja;
 import com.example.demo.pozycja.PozycjaRepository;
 import com.example.demo.pracownik.Pracownik;
@@ -32,6 +33,7 @@ public class Init implements CommandLineRunner {
     private final TowarRepository towarRepository;
     private final ProducentRepository producentRepository;
     private final KlientRepository klientRepository;
+    private final KlientService klientService;
     private final RabatRepository rabatRepository;
     private final ZamowienieRepository zamowienieRepository;
     private final PozycjaRepository pozycjaRepository;
@@ -44,6 +46,7 @@ public class Init implements CommandLineRunner {
                 TowarRepository towarRepository,
                 ProducentRepository producentRepository,
                 KlientRepository klientRepository,
+                KlientService klientService,
                 RabatRepository rabatRepository,
                 ZamowienieRepository zamowienieRepository,
                 PozycjaRepository pozycjaRepository,
@@ -54,6 +57,7 @@ public class Init implements CommandLineRunner {
         this.towarRepository = towarRepository;
         this.producentRepository = producentRepository;
         this.klientRepository = klientRepository;
+        this.klientService = klientService;
         this.rabatRepository = rabatRepository;
         this.zamowienieRepository = zamowienieRepository;
         this.pozycjaRepository = pozycjaRepository;
@@ -80,6 +84,7 @@ public class Init implements CommandLineRunner {
         Rabat rabat1 = new Rabat("Stały klient", 10F);
         Rabat rabat2 = new Rabat("Premium klient", 15F);
         Rabat rabat3 = new Rabat("Polecający klient", 5F);
+        Rabat rabat4 = new Rabat("Brak rabatu", 0F);
 
         Kategoria kategoria1 = new Kategoria("Lodówki", 23F);
         Kategoria kategoria2 = new Kategoria("Pralki", 23F);
@@ -103,8 +108,7 @@ public class Init implements CommandLineRunner {
                 "5/2",
                 "Białystok",
                 "15-058",
-                "Polska",
-                rabat3
+                "Polska"
         );
 
         Faktura faktura = new Faktura();
@@ -141,9 +145,10 @@ public class Init implements CommandLineRunner {
         rabatRepository.save(rabat1);
         rabatRepository.save(rabat2);
         rabatRepository.save(rabat3);
+        rabatRepository.save(rabat4);
         towarRepository.save(towar1);
         towarRepository.save(towar2);
-        klientRepository.save(klient);
+        klientService.save(klient);
         fakturaRepository.save(faktura);
         zamowienieRepository.save(zamowienie1);
         pozycjaRepository.save(pozycja1);

@@ -1,6 +1,7 @@
 package com.example.demo.klient;
 
 import com.example.demo.rabat.Rabat;
+import com.example.demo.rabat.RabatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,13 @@ public class KlientService{
 
     @Autowired
     private KlientRepository klientRepository;
+    @Autowired
+    private RabatRepository rabatRepository;
 
     public void save(Klient klient){
+        if(klient.getRabat()==null){
+            klient.setRabat(rabatRepository.findByProcentRabatu(0F));
+        }
         klientRepository.save(klient);
     }
 

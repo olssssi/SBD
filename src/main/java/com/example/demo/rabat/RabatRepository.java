@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RabatRepository extends JpaRepository<Rabat, Long> {
+    Rabat findByProcentRabatu(Float procentRabatu);
 }

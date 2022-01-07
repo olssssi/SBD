@@ -1,6 +1,7 @@
 package com.example.demo.klient;
 
 import com.example.demo.rabat.Rabat;
+import com.example.demo.rabat.RabatService;
 import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
