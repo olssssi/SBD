@@ -30,9 +30,8 @@ public class FakturaController {
 
     @PostMapping()
     @ResponseBody
-    public ResponseEntity<HttpStatus> addFaktura(@RequestBody Faktura faktura) {
-        fakturaService.save(faktura);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Faktura> addFaktura(@RequestBody Faktura faktura) {
+        return new ResponseEntity<>(fakturaService.save(faktura),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

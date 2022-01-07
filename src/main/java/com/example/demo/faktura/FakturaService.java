@@ -23,8 +23,8 @@ public class FakturaService {
         return fakturaRepository.findAll();
     }
 
-    public void save(Faktura cena) {
-        fakturaRepository.save(cena);
+    public Faktura save(Faktura cena) {
+        return fakturaRepository.save(cena);
     }
 
     public void delete(Faktura faktura) {
