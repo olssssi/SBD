@@ -20,14 +20,17 @@ public class TowarController {
     private final TowarService towarService;
     private final ProducentService producentService;
     private final KategoriaService kategoriaService;
+    private final TowarAmountFacade towarAmountFacade;
 
     @Autowired
     public TowarController(TowarService towarService,
                            ProducentService producentService,
-                           KategoriaService kategoriaService) {
+                           KategoriaService kategoriaService,
+                           TowarAmountFacade towarAmountFacade) {
         this.towarService = towarService;
         this.producentService = producentService;
         this.kategoriaService = kategoriaService;
+        this.towarAmountFacade = towarAmountFacade;
     }
 
     @GetMapping("")
@@ -63,6 +66,13 @@ public class TowarController {
     @ResponseBody
     public ResponseEntity<HttpStatus> updateTowar(@PathVariable Long id, @RequestBody Towar towar) throws TowarNotFoundException {
         towarService.update(id, towar);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/dostawa/{id}/{amount}")
+    @ResponseBody
+    public ResponseEntity<HttpStatus> delivery(@PathVariable Long id, @PathVariable int amount) throws TowarNotFoundException {
+        towarAmountFacade.delivery(id, amount);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

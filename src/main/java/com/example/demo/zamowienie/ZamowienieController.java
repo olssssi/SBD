@@ -7,6 +7,8 @@ import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientService;
 import com.example.demo.pracownik.Pracownik;
 import com.example.demo.pracownik.PracownikService;
+import com.example.demo.towar.TowarAmountFacade;
+import com.example.demo.towar.TowarNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +23,17 @@ public class ZamowienieController {
     private final ZamowienieService zamowienieService;
     private final PracownikService pracownikService;
     private final KlientService klientService;
+    private final TowarAmountFacade towarAmountFacade;
 
     @Autowired
     public ZamowienieController(ZamowienieService zamowienieService,
                                 PracownikService pracownikService,
-                                KlientService klientService) {
+                                KlientService klientService,
+                                TowarAmountFacade towarAmountFacade) {
         this.zamowienieService = zamowienieService;
         this.pracownikService = pracownikService;
         this.klientService = klientService;
+        this.towarAmountFacade = towarAmountFacade;
     }
 
     @GetMapping("")
@@ -72,6 +77,13 @@ public class ZamowienieController {
     public ResponseEntity<HttpStatus> assignFakturaToZamowienie(@PathVariable Long id, @RequestBody Faktura faktura) throws ZamowienieNotFoundException {
         zamowienieService.assignFaktura(id, faktura);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/realizuj/{id}")
+    public ResponseEntity<HttpStatus> finalizeZamowienie(@PathVariable Long id) throws ZamowienieNotFoundException, TowarNotFoundException {
+        towarAmountFacade.finalizeZamowienie(id);
+        zamowienieService.delete(zamowienieService.findById(id));
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")

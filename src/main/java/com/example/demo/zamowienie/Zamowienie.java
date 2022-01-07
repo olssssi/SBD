@@ -77,4 +77,8 @@ public class Zamowienie {
     public void setFaktura(Faktura faktura) {
         this.faktura = faktura;
     }
+
+    public Set<Pozycja> collectPozycje(){
+        return pozycje;
+    }
 }
