@@ -1,5 +1,6 @@
 package com.example.demo.klient;
 
+import com.example.demo.rabat.Rabat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,13 @@ public class KlientController {
     @ResponseBody
     public ResponseEntity<HttpStatus> updateKlient(@PathVariable Long id, @RequestBody Klient klient) throws KlientNotFoundException {
         klientService.update(id, klient);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/rabat/{id}")
+    @ResponseBody
+    public ResponseEntity<HttpStatus> grantDiscount(@PathVariable Long id, @RequestBody Rabat rabat) throws KlientNotFoundException {
+        klientService.grantDiscount(id, rabat);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

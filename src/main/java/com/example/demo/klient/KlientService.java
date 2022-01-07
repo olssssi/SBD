@@ -1,5 +1,6 @@
 package com.example.demo.klient;
 
+import com.example.demo.rabat.Rabat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,12 @@ public class KlientService{
     public Klient findById(Long id) throws KlientNotFoundException {
         return klientRepository.findById(id)
                 .orElseThrow(KlientNotFoundException::new);
+    }
+
+    public void grantDiscount(Long id, Rabat rabat) throws KlientNotFoundException {
+        Klient klient = findById(id);
+        klient.setRabat(rabat);
+        klientRepository.save(klient);
     }
 
     public List<Klient> findAll(){
