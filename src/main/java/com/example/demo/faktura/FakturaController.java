@@ -1,11 +1,13 @@
 package com.example.demo.faktura;
 
+import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -22,6 +24,12 @@ public class FakturaController {
     @GetMapping("")
     public ResponseEntity<List<Faktura>> getFaktury() {
         return new ResponseEntity<>(fakturaService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/zamowienia/{id}")
+    public ResponseEntity<List<Zamowienie>> getZamowienia(@PathVariable Long id) throws FakturaNotFoundException {
+        Faktura faktura = fakturaService.findById(id);
+        return new ResponseEntity<>(new ArrayList<>(fakturaService.getZamowienia(faktura)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -1,14 +1,12 @@
 package com.example.demo.faktura;
 
-import com.example.demo.stanZamowienia.StanZamowienia;
 import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
+//TODO: dataRealizacji nie wyswietla sie na froncie
 @Entity
 @Table
 public class Faktura {
@@ -35,6 +33,7 @@ public class Faktura {
     public Faktura() {
         this.zamowienia = new HashSet<>();
         this.maxDataRealizacji = OffsetDateTime.now().plusDays(14);
+        this.dataRealizacji = null;
     }
 
     public Long getIdFaktury() {
@@ -67,4 +66,11 @@ public class Faktura {
         return maxDataRealizacji;
     }
 
+    public OffsetDateTime getDataRealizacji() {
+        return dataRealizacji;
+    }
+
+    public void setDataRealizacji(OffsetDateTime dataRealizacji) {
+        this.dataRealizacji = dataRealizacji;
+    }
 }

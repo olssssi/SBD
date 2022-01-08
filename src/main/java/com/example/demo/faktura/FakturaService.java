@@ -7,7 +7,9 @@ import com.example.demo.zamowienie.ZamowienieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class FakturaService {
@@ -26,12 +28,18 @@ public class FakturaService {
                 .orElseThrow(FakturaNotFoundException::new);
     }
 
+    public Set<Zamowienie> getZamowienia(Faktura faktura){
+        return faktura.collectZamowienia();
+    }
+
     //TODO: walidacja czy przed tym stan jest = zrealizowane
     public void registerAsPaid(Faktura faktura) throws ZamowienieNotFoundException {
         for (Zamowienie zamowienie:faktura.collectZamowienia()) {
             zamowienie.setStanZamowienia(StanZamowienia.OPLACONE);
             zamowienieService.update(zamowienie.getIdZamowienia(), zamowienie);
         }
+        faktura.setDataRealizacji(OffsetDateTime.now());
+        fakturaRepository.save(faktura);
     }
 
     public List<Faktura> findAll() {
