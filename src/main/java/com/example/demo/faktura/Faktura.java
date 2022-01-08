@@ -18,6 +18,8 @@ public class Faktura {
     private Set<Zamowienie> zamowienia;
     private OffsetDateTime maxDataRealizacji;
     private OffsetDateTime dataRealizacji;
+    private float kwotaNetto;
+    private float kwotaBrutto;
 
     @PreRemove
     public void preRemove(){
@@ -34,6 +36,24 @@ public class Faktura {
 
     public Long getIdFaktury() {
         return idFaktury;
+    }
+
+    public float getKwotaNetto() {
+        return kwotaNetto;
+    }
+
+    public float getKwotaBrutto() {
+        return kwotaBrutto;
+    }
+
+    public void increaseKwota(float cenaBrutto, float cenaNetto){
+        this.kwotaBrutto = kwotaBrutto + cenaBrutto;
+        this.kwotaNetto = kwotaNetto + cenaNetto;
+    }
+
+    public void decreaseKwota(float cenaBrutto, float cenaNetto){
+        this.kwotaBrutto = kwotaBrutto - cenaBrutto;
+        this.kwotaNetto = kwotaNetto - cenaNetto;
     }
 
 }

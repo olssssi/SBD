@@ -20,6 +20,13 @@ public class Pozycja {
     @JoinColumn(name = "towar_id")
     private Towar towar;
 
+    @PreRemove
+    public void preRemove(){
+        if(zamowienie!=null){
+            zamowienie.decreaseKwota(ilosc*towar.getCenaBrutto(), ilosc*towar.getCenaNetto());
+        }
+    }
+
     public Pozycja(int ilosc, Towar towar) {
         this.zamowienie = null;
         this.ilosc = ilosc;
@@ -38,6 +45,7 @@ public class Pozycja {
     }
 
     public void setZamowienie(Zamowienie zamowienie) {
+        zamowienie.increaseKwota(ilosc*towar.getCenaBrutto(), ilosc*towar.getCenaNetto());
         this.zamowienie = zamowienie;
     }
 

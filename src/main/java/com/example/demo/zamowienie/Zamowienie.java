@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+//TODO: zwiekszanie przy dodawaniu pozycji
 @Entity
 @Table
 public class Zamowienie {
@@ -30,6 +31,15 @@ public class Zamowienie {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faktura_id")
     private Faktura faktura;
+    private float kwotaNetto;
+    private float kwotaBrutto;
+
+    @PreRemove
+    public void preRemove(){
+//        if(faktura!=null){
+//            faktura.decreaseKwota(kwotaBrutto, kwotaNetto);
+//        }
+    }
 
     //TODO: jezeli zamowienie jest puste, to trzeba je usunac
     public Zamowienie(Klient klient, Pracownik pracownik) {
@@ -75,7 +85,32 @@ public class Zamowienie {
     }
 
     public void setFaktura(Faktura faktura) {
+        faktura.increaseKwota(kwotaBrutto, kwotaNetto);
         this.faktura = faktura;
+    }
+
+    public float getKwotaNetto() {
+        return kwotaNetto;
+    }
+
+    public float getKwotaBrutto() {
+        return kwotaBrutto;
+    }
+
+    public void increaseKwota(float cenaBrutto, float cenaNetto){
+        this.kwotaBrutto = kwotaBrutto + cenaBrutto;
+        this.kwotaNetto = kwotaNetto + cenaNetto;
+        if(faktura!=null){
+            faktura.increaseKwota(cenaBrutto, cenaNetto);
+        }
+    }
+
+    public void decreaseKwota(float cenaBrutto, float cenaNetto){
+        this.kwotaBrutto = kwotaBrutto - cenaBrutto;
+        this.kwotaNetto = kwotaNetto - cenaNetto;
+        if(faktura!=null){
+            faktura.decreaseKwota(cenaBrutto, cenaNetto);
+        }
     }
 
     public Set<Pozycja> collectPozycje(){
