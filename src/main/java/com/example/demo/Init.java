@@ -14,6 +14,7 @@ import com.example.demo.pracownik.PracownikRepository;
 import com.example.demo.producent.Producent;
 import com.example.demo.producent.ProducentRepository;
 import com.example.demo.rabat.Rabat;
+import com.example.demo.stanZamowienia.StanZamowienia;
 import com.example.demo.stanowisko.Stanowisko;
 import com.example.demo.stanowisko.StanowiskoRepository;
 import com.example.demo.towar.Towar;
@@ -124,6 +125,7 @@ public class Init implements CommandLineRunner {
 
         zamowienie1.setFaktura(faktura);
         zamowienie2.setFaktura(faktura);
+        zamowienie2.setStanZamowienia(StanZamowienia.W_REALIZACJI);
 
         Zamowienie zamowienie3 = new Zamowienie(klient, pracownik);
 

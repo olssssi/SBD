@@ -35,7 +35,7 @@ public class Zamowienie {
     private float kwotaBrutto;
 
     @PreRemove
-    public void preRemove(){
+    private void preRemove(){
 //        if(faktura!=null){
 //            faktura.decreaseKwota(kwotaBrutto, kwotaNetto);
 //        }
