@@ -30,8 +30,8 @@ public class PozycjaService {
         return pozycjaRepository.findAll();
     }
 
-    public void save(Pozycja pozycja) {
-        pozycjaRepository.save(pozycja);
+    public Pozycja save(Pozycja pozycja) {
+        return pozycjaRepository.save(pozycja);
     }
 
     public void update(Long id, Pozycja pozycja) throws PozycjaNotFoundException {

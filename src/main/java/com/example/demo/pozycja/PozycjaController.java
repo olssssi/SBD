@@ -43,9 +43,8 @@ public class PozycjaController {
 
     @PostMapping()
     @ResponseBody
-    public ResponseEntity<HttpStatus> addPozycja(@RequestBody Pozycja pozycja) {
-        pozycjaService.save(pozycja);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Pozycja> addPozycja(@RequestBody Pozycja pozycja) {
+        return new ResponseEntity<>(pozycjaService.save(pozycja), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
