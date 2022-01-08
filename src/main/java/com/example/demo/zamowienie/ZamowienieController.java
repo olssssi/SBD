@@ -60,9 +60,8 @@ public class ZamowienieController {
 
     @PostMapping()
     @ResponseBody
-    public ResponseEntity<HttpStatus> addZamowienie(@RequestBody Zamowienie zamowienie) {
-        zamowienieService.save(zamowienie);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Zamowienie> addZamowienie(@RequestBody Zamowienie zamowienie) {
+        return new ResponseEntity<>(zamowienieService.save(zamowienie), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

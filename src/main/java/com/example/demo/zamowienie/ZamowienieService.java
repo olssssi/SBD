@@ -32,8 +32,9 @@ public class ZamowienieService {
         return zamowienieRepository.findByPracownik(pracownik);
     }
 
-    public void save(Zamowienie zamowienie) {
+    public Zamowienie save(Zamowienie zamowienie) {
         zamowienieRepository.save(zamowienie);
+        return zamowienie;
     }
 
     public void update(Long id, Zamowienie zamowienie) throws ZamowienieNotFoundException {
