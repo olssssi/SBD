@@ -21,7 +21,7 @@ public class Pozycja {
     private Towar towar;
 
     @PreRemove
-    public void preRemove(){
+    private void preRemove(){
         if(zamowienie!=null){
             zamowienie.decreaseKwota(ilosc*towar.getCenaBrutto(), ilosc*towar.getCenaNetto());
         }

@@ -1,10 +1,12 @@
 package com.example.demo.faktura;
 
+import com.example.demo.stanZamowienia.StanZamowienia;
 import com.example.demo.zamowienie.Zamowienie;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +24,7 @@ public class Faktura {
     private float kwotaBrutto;
 
     @PreRemove
-    public void preRemove(){
+    private void preRemove(){
         zamowienia.forEach(zamowienie -> zamowienie.setFaktura(null));
     }
 
@@ -32,6 +34,7 @@ public class Faktura {
 
     public Faktura() {
         this.zamowienia = new HashSet<>();
+        this.maxDataRealizacji = OffsetDateTime.now().plusDays(14);
     }
 
     public Long getIdFaktury() {
@@ -54,6 +57,14 @@ public class Faktura {
     public void decreaseKwota(float cenaBrutto, float cenaNetto){
         this.kwotaBrutto = kwotaBrutto - cenaBrutto;
         this.kwotaNetto = kwotaNetto - cenaNetto;
+    }
+
+    public Set<Zamowienie> collectZamowienia(){
+        return this.zamowienia;
+    }
+
+    public OffsetDateTime getMaxDataRealizacji() {
+        return maxDataRealizacji;
     }
 
 }
