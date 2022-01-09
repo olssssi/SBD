@@ -1,5 +1,6 @@
 package com.example.demo.zamowienie;
 
+import com.example.demo.faktura.FakturaService;
 import com.example.demo.klient.KlientNotFoundException;
 import com.example.demo.pracownik.PracownikNotFoundException;
 import com.example.demo.faktura.Faktura;
@@ -7,6 +8,7 @@ import com.example.demo.klient.Klient;
 import com.example.demo.klient.KlientService;
 import com.example.demo.pracownik.Pracownik;
 import com.example.demo.pracownik.PracownikService;
+import com.example.demo.stanZamowienia.StanZamowienia;
 import com.example.demo.towar.TowarAmountFacade;
 import com.example.demo.towar.TowarNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +25,19 @@ public class ZamowienieController {
     private final ZamowienieService zamowienieService;
     private final PracownikService pracownikService;
     private final KlientService klientService;
+    private final FakturaService fakturaService;
     private final TowarAmountFacade towarAmountFacade;
 
     @Autowired
     public ZamowienieController(ZamowienieService zamowienieService,
                                 PracownikService pracownikService,
                                 KlientService klientService,
+                                FakturaService fakturaService,
                                 TowarAmountFacade towarAmountFacade) {
         this.zamowienieService = zamowienieService;
         this.pracownikService = pracownikService;
         this.klientService = klientService;
+        this.fakturaService = fakturaService;
         this.towarAmountFacade = towarAmountFacade;
     }
 
@@ -75,6 +80,25 @@ public class ZamowienieController {
     @ResponseBody
     public ResponseEntity<HttpStatus> assignFakturaToZamowienie(@PathVariable Long id, @RequestBody Faktura faktura) throws ZamowienieNotFoundException {
         zamowienieService.assignFaktura(id, faktura);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //todo: jezeli jest "do zaplaty" lub "oplacone" to nie mozna juz usuwac zamowien i chyba faktur?
+    //todo: nie moze przekroczyc terminu zaplaty faktury
+    @PutMapping("/w-realizacji/{id}")
+    public ResponseEntity<HttpStatus> inRealizationZamowienie(@PathVariable Long id) throws ZamowienieNotFoundException {
+        Zamowienie zamowienie = zamowienieService.findById(id);
+        zamowienie.setStanZamowienia(StanZamowienia.W_REALIZACJI);
+        zamowienieService.save(zamowienie);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/do-zaplaty/{id}")
+    public ResponseEntity<HttpStatus> toPayZamowienie(@PathVariable Long id) throws ZamowienieNotFoundException {
+        Zamowienie zamowienie = zamowienieService.findById(id);
+        zamowienie.setStanZamowienia(StanZamowienia.DO_OPLATY);
+        fakturaService.checkRealization(zamowienie.getFaktura());
+        zamowienieService.save(zamowienie);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -20,6 +20,7 @@ public class Faktura {
     private OffsetDateTime dataRealizacji;
     private float kwotaNetto;
     private float kwotaBrutto;
+    private Boolean czyWszystkieZamowieniaZrealizowane = false;
 
     @PreRemove
     private void preRemove(){
@@ -46,6 +47,14 @@ public class Faktura {
 
     public float getKwotaBrutto() {
         return kwotaBrutto;
+    }
+
+    public Boolean getCzyWszystkieZamowieniaZrealizowane() {
+        return czyWszystkieZamowieniaZrealizowane;
+    }
+
+    public void setCzyWszystkieZamowieniaZrealizowane(Boolean czyWszystkieZamowieniaOplacone) {
+        this.czyWszystkieZamowieniaZrealizowane = czyWszystkieZamowieniaOplacone;
     }
 
     public void increaseKwota(float cenaBrutto, float cenaNetto){

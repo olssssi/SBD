@@ -37,7 +37,7 @@ public class FakturaController {
         return new ResponseEntity<>(fakturaService.findById(id), HttpStatus.OK);
     }
 
-    @PutMapping("/mark-paid/{id}")
+    @PutMapping("/oplacona/{id}")
     public ResponseEntity<HttpStatus> setFakturaPaid(@PathVariable Long id) throws FakturaNotFoundException, ZamowienieNotFoundException {
         Faktura faktura = fakturaService.findById(id);
         fakturaService.registerAsPaid(faktura);

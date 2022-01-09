@@ -32,13 +32,22 @@ public class FakturaService {
         return faktura.collectZamowienia();
     }
 
-    //TODO: walidacja czy przed tym stan jest = zrealizowane
     public void registerAsPaid(Faktura faktura) throws ZamowienieNotFoundException {
         for (Zamowienie zamowienie:faktura.collectZamowienia()) {
             zamowienie.setStanZamowienia(StanZamowienia.OPLACONE);
             zamowienieService.update(zamowienie.getIdZamowienia(), zamowienie);
         }
         faktura.setDataRealizacji(OffsetDateTime.now());
+        fakturaRepository.save(faktura);
+    }
+
+    public void checkRealization(Faktura faktura){
+        for (Zamowienie z: getZamowienia(faktura)) {
+            if(z.getStanZamowienia()!= StanZamowienia.DO_OPLATY){
+                return;
+            }
+        }
+        faktura.setCzyWszystkieZamowieniaZrealizowane(true);
         fakturaRepository.save(faktura);
     }
 
