@@ -1,6 +1,7 @@
 package com.example.demo.zamowienie;
 
 import com.example.demo.faktura.Faktura;
+import com.example.demo.faktura.FakturaRepository;
 import com.example.demo.klient.Klient;
 import com.example.demo.pracownik.Pracownik;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,13 @@ import java.util.List;
 @Service
 public class ZamowienieService {
     private final ZamowienieRepository zamowienieRepository;
+    private final FakturaRepository fakturaRepository;
 
     @Autowired
-    public ZamowienieService(ZamowienieRepository zamowienieRepository) {
+    public ZamowienieService(ZamowienieRepository zamowienieRepository,
+                             FakturaRepository fakturaRepository) {
         this.zamowienieRepository = zamowienieRepository;
+        this.fakturaRepository = fakturaRepository;
     }
 
     public Zamowienie findById(Long id) throws ZamowienieNotFoundException {
@@ -51,6 +55,8 @@ public class ZamowienieService {
         zamowienieToAssign.setFaktura(faktura);
 
         zamowienieRepository.save(zamowienieToAssign);
+        fakturaRepository.save(faktura);
+
     }
 
     public void delete(Zamowienie zamowienie) {

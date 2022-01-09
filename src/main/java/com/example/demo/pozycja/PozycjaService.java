@@ -3,6 +3,7 @@ package com.example.demo.pozycja;
 import com.example.demo.faktura.Faktura;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
+import com.example.demo.zamowienie.ZamowienieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,13 @@ import java.util.List;
 @Service
 public class PozycjaService {
     private final PozycjaRepository pozycjaRepository;
+    private final ZamowienieRepository zamowienieRepository;
 
     @Autowired
-    public PozycjaService(PozycjaRepository pozycjaRepository) {
+    public PozycjaService(PozycjaRepository pozycjaRepository,
+                          ZamowienieRepository zamowienieRepository) {
         this.pozycjaRepository = pozycjaRepository;
+        this.zamowienieRepository = zamowienieRepository;
     }
 
     public Pozycja findById(Long id) throws PozycjaNotFoundException {
@@ -48,6 +52,7 @@ public class PozycjaService {
         pozycjaToAssign.setZamowienie(zamowienie);
 
         pozycjaRepository.save(pozycjaToAssign);
+        zamowienieRepository.save(zamowienie);
     }
 
     public void delete(Pozycja pozycja) {
