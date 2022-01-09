@@ -54,8 +54,8 @@ public class ZamowienieService {
         Zamowienie zamowienieToAssign = findById(id);
         zamowienieToAssign.setFaktura(faktura);
 
-        zamowienieRepository.save(zamowienieToAssign);
         fakturaRepository.save(faktura);
+        zamowienieRepository.save(zamowienieToAssign);
 
     }
 

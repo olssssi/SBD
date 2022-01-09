@@ -1,6 +1,7 @@
 package com.example.demo.pozycja;
 
 import com.example.demo.faktura.Faktura;
+import com.example.demo.faktura.FakturaRepository;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieRepository;
@@ -13,12 +14,15 @@ import java.util.List;
 public class PozycjaService {
     private final PozycjaRepository pozycjaRepository;
     private final ZamowienieRepository zamowienieRepository;
+    private final FakturaRepository fakturaRepository;
 
     @Autowired
     public PozycjaService(PozycjaRepository pozycjaRepository,
-                          ZamowienieRepository zamowienieRepository) {
+                          ZamowienieRepository zamowienieRepository,
+                          FakturaRepository fakturaRepository) {
         this.pozycjaRepository = pozycjaRepository;
         this.zamowienieRepository = zamowienieRepository;
+        this.fakturaRepository = fakturaRepository;
     }
 
     public Pozycja findById(Long id) throws PozycjaNotFoundException {
@@ -51,8 +55,12 @@ public class PozycjaService {
         Pozycja pozycjaToAssign = findById(id);
         pozycjaToAssign.setZamowienie(zamowienie);
 
-        pozycjaRepository.save(pozycjaToAssign);
+        Faktura faktura = zamowienie.getFaktura();
+        if(faktura!=null){
+            fakturaRepository.save(faktura);
+        }
         zamowienieRepository.save(zamowienie);
+        pozycjaRepository.save(pozycjaToAssign);
     }
 
     public void delete(Pozycja pozycja) {

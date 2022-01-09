@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
-//TODO: dataRealizacji nie wyswietla sie na froncie
+
 @Entity
 @Table
 public class Faktura {
@@ -16,7 +16,7 @@ public class Faktura {
     private Long idFaktury;
     @OneToMany(mappedBy = "faktura")
     private Set<Zamowienie> zamowienia;
-    private OffsetDateTime maxDataRealizacji;
+//    private OffsetDateTime maxDataRealizacji;
     private OffsetDateTime dataRealizacji;
     private float kwotaNetto;
     private float kwotaBrutto;
@@ -27,13 +27,11 @@ public class Faktura {
         zamowienia.forEach(zamowienie -> zamowienie.setFaktura(null));
     }
 
-    //TODO: trzeba dodać maksymalną datę realizacji zamówienia
-    //TODO: trzeba dodać rzeczywista datę realizacji zamówienia
     //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
 
     public Faktura() {
         this.zamowienia = new HashSet<>();
-        this.maxDataRealizacji = OffsetDateTime.now().plusDays(14);
+//        this.maxDataRealizacji = OffsetDateTime.now().plusDays(14);
         this.dataRealizacji = null;
     }
 
@@ -71,9 +69,9 @@ public class Faktura {
         return this.zamowienia;
     }
 
-    public OffsetDateTime getMaxDataRealizacji() {
-        return maxDataRealizacji;
-    }
+//    public OffsetDateTime getMaxDataRealizacji() {
+//        return maxDataRealizacji;
+//    }
 
     public OffsetDateTime getDataRealizacji() {
         return dataRealizacji;
