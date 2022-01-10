@@ -1,8 +1,11 @@
 package com.example.demo.faktura;
 
 import com.example.demo.stanZamowienia.StanZamowienia;
+import com.example.demo.towar.TowarAmountFacade;
+import com.example.demo.towar.TowarNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
+import com.example.demo.zamowienie.ZamowienieRepository;
 import com.example.demo.zamowienie.ZamowienieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +17,16 @@ import java.util.Set;
 @Service
 public class FakturaService {
     private final FakturaRepository fakturaRepository;
-    private final ZamowienieService zamowienieService;
+    private final ZamowienieRepository zamowienieRepository;
+    private final TowarAmountFacade towarAmountFacade;
 
     @Autowired
     public FakturaService(FakturaRepository fakturaRepository,
-                          ZamowienieService zamowienieService) {
+                          ZamowienieRepository zamowienieRepository,
+                          TowarAmountFacade towarAmountFacade) {
         this.fakturaRepository = fakturaRepository;
-        this.zamowienieService = zamowienieService;
+        this.zamowienieRepository = zamowienieRepository;
+        this.towarAmountFacade = towarAmountFacade;
     }
 
     public Faktura findById(Long id) throws FakturaNotFoundException {
@@ -32,10 +38,11 @@ public class FakturaService {
         return faktura.collectZamowienia();
     }
 
-    public void registerAsPaid(Faktura faktura) throws ZamowienieNotFoundException {
+    public void registerAsPaid(Faktura faktura) throws ZamowienieNotFoundException, TowarNotFoundException {
         for (Zamowienie zamowienie:faktura.collectZamowienia()) {
             zamowienie.setStanZamowienia(StanZamowienia.OPLACONE);
-            zamowienieService.update(zamowienie.getIdZamowienia(), zamowienie);
+            towarAmountFacade.finalizeZamowienie(zamowienie.getIdZamowienia());
+            zamowienieRepository.save(zamowienie);
         }
         faktura.setDataRealizacji(OffsetDateTime.now());
         fakturaRepository.save(faktura);

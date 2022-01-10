@@ -1,5 +1,6 @@
 package com.example.demo.faktura;
 
+import com.example.demo.towar.TowarNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class FakturaController {
     }
 
     @PutMapping("/oplacona/{id}")
-    public ResponseEntity<HttpStatus> setFakturaPaid(@PathVariable Long id) throws FakturaNotFoundException, ZamowienieNotFoundException {
+    public ResponseEntity<HttpStatus> setFakturaPaid(@PathVariable Long id) throws FakturaNotFoundException, ZamowienieNotFoundException, TowarNotFoundException {
         Faktura faktura = fakturaService.findById(id);
         fakturaService.registerAsPaid(faktura);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -116,13 +116,13 @@ public class Init implements CommandLineRunner {
         Zamowienie zamowienie1 = new Zamowienie(klient, pracownik);
         Zamowienie zamowienie2 = new Zamowienie(klient, pracownik);
         Pozycja pozycja1 = new Pozycja(2, towar1);
-        Pozycja pozycja2 = new Pozycja( 10, towar1);
+//        Pozycja pozycja2 = new Pozycja( 10, towar1);
         Pozycja pozycja3 = new Pozycja(2, towar2);
 
-        Zamowienie zamowienie3 = new Zamowienie(klient, pracownik);
+//        Zamowienie zamowienie3 = new Zamowienie(klient, pracownik);
 
         pozycja1.setZamowienie(zamowienie1);
-        pozycja2.setZamowienie(zamowienie3);
+//        pozycja2.setZamowienie(zamowienie3);
         pozycja3.setZamowienie(zamowienie2);
 
         zamowienie1.setFaktura(faktura);
@@ -156,8 +156,8 @@ public class Init implements CommandLineRunner {
         zamowienieRepository.save(zamowienie1);
         pozycjaRepository.save(pozycja1);
         zamowienieRepository.save(zamowienie2);
-        zamowienieRepository.save(zamowienie3);
-        pozycjaRepository.save(pozycja2);
+//        zamowienieRepository.save(zamowienie3);
+//        pozycjaRepository.save(pozycja2);
         pozycjaRepository.save(pozycja3);
     }
 }
