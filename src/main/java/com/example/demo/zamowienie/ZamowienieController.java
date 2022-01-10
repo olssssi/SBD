@@ -83,8 +83,6 @@ public class ZamowienieController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //todo: jezeli jest "do zaplaty" lub "oplacone" to nie mozna juz usuwac zamowien i chyba faktur?
-    //todo: nie moze przekroczyc terminu zaplaty faktury
     @PutMapping("/w-realizacji/{id}")
     public ResponseEntity<HttpStatus> inRealizationZamowienie(@PathVariable Long id) throws ZamowienieNotFoundException {
         Zamowienie zamowienie = zamowienieService.findById(id);
