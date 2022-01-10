@@ -22,10 +22,10 @@ public class Faktura {
     private float kwotaBrutto;
     private Boolean czyWszystkieZamowieniaZrealizowane = false;
 
-    @PreRemove
-    private void preRemove(){
-        zamowienia.forEach(zamowienie -> zamowienie.setFaktura(null));
-    }
+//    @PreRemove
+//    private void preRemove(){
+//        zamowienia.forEach(zamowienie -> zamowienie.setFaktura(null));
+//    }
 
     //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
 

@@ -3,6 +3,7 @@ package com.example.demo.faktura;
 import com.example.demo.towar.TowarNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
+import com.example.demo.zamowienie.ZamowienieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,13 @@ import java.util.List;
 @RequestMapping("/faktury")
 public class FakturaController {
     private final FakturaService fakturaService;
+    private final ZamowienieService zamowienieService;
 
     @Autowired
-    public FakturaController(FakturaService fakturaService) {
+    public FakturaController(FakturaService fakturaService,
+                             ZamowienieService zamowienieService) {
         this.fakturaService = fakturaService;
+        this.zamowienieService = zamowienieService;
     }
 
     @GetMapping("")
@@ -53,7 +57,11 @@ public class FakturaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> removeFaktura(@PathVariable Long id) throws FakturaNotFoundException {
-        fakturaService.delete(fakturaService.findById(id));
+        Faktura faktura = fakturaService.findById(id);
+        for (Zamowienie zamowienie: fakturaService.getZamowienia(faktura)) {
+            zamowienieService.delete(zamowienie);
+        }
+        fakturaService.delete(faktura);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

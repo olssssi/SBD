@@ -3,6 +3,8 @@ package com.example.demo.zamowienie;
 import com.example.demo.faktura.Faktura;
 import com.example.demo.faktura.FakturaRepository;
 import com.example.demo.klient.Klient;
+import com.example.demo.pozycja.Pozycja;
+import com.example.demo.pozycja.PozycjaRepository;
 import com.example.demo.pracownik.Pracownik;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,15 @@ import java.util.List;
 public class ZamowienieService {
     private final ZamowienieRepository zamowienieRepository;
     private final FakturaRepository fakturaRepository;
+    private final PozycjaRepository pozycjaRepository;
 
     @Autowired
     public ZamowienieService(ZamowienieRepository zamowienieRepository,
-                             FakturaRepository fakturaRepository) {
+                             FakturaRepository fakturaRepository,
+                             PozycjaRepository pozycjaRepository) {
         this.zamowienieRepository = zamowienieRepository;
         this.fakturaRepository = fakturaRepository;
+        this.pozycjaRepository = pozycjaRepository;
     }
 
     public Zamowienie findById(Long id) throws ZamowienieNotFoundException {
@@ -60,6 +65,9 @@ public class ZamowienieService {
     }
 
     public void delete(Zamowienie zamowienie) {
+//        for (Pozycja pozycja : zamowienie.collectPozycje()) {
+//            pozycjaRepository.delete(pozycja);
+//        }
         zamowienieRepository.delete(zamowienie);
     }
 
