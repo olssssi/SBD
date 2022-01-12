@@ -6,7 +6,6 @@ import com.example.demo.towar.TowarNotFoundException;
 import com.example.demo.zamowienie.Zamowienie;
 import com.example.demo.zamowienie.ZamowienieNotFoundException;
 import com.example.demo.zamowienie.ZamowienieRepository;
-import com.example.demo.zamowienie.ZamowienieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,6 +67,19 @@ public class FakturaService {
 
     public void delete(Faktura faktura) {
         fakturaRepository.delete(faktura);
+    }
+
+    public void calcSum(){
+        for (Faktura faktura: fakturaRepository.findAll()) {
+            float brutto = 0;
+            float netto = 0;
+            for (Zamowienie zamowienie: getZamowienia(faktura)) {
+                brutto = brutto + zamowienie.getKwotaBrutto();
+                netto = netto + zamowienie.getKwotaNetto();
+            }
+            faktura.setKwotaBrutto(brutto);
+            faktura.setKwotaNetto(netto);
+        }
     }
 
 }

@@ -65,6 +65,14 @@ public class Faktura {
         this.kwotaNetto = kwotaNetto - cenaNetto;
     }
 
+    public void setKwotaNetto(float kwotaNetto) {
+        this.kwotaNetto = kwotaNetto;
+    }
+
+    public void setKwotaBrutto(float kwotaBrutto) {
+        this.kwotaBrutto = kwotaBrutto;
+    }
+
     public Set<Zamowienie> collectZamowienia(){
         return this.zamowienia;
     }

@@ -43,6 +43,7 @@ public class ZamowienieController {
 
     @GetMapping("")
     public ResponseEntity<List<Zamowienie>> getZamowienia() {
+        zamowienieService.calcSum();
         return new ResponseEntity<>(zamowienieService.findAll(), HttpStatus.OK);
     }
 

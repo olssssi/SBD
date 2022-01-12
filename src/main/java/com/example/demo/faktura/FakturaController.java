@@ -28,6 +28,8 @@ public class FakturaController {
 
     @GetMapping("")
     public ResponseEntity<List<Faktura>> getFaktury() {
+        zamowienieService.calcSum();
+        fakturaService.calcSum();
         return new ResponseEntity<>(fakturaService.findAll(), HttpStatus.OK);
     }
 

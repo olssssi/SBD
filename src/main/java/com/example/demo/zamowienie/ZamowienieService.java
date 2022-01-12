@@ -71,4 +71,17 @@ public class ZamowienieService {
         zamowienieRepository.delete(zamowienie);
     }
 
+    public void calcSum(){
+        for (Zamowienie zamowienie: zamowienieRepository.findAll()) {
+            float brutto = 0;
+            float netto = 0;
+            for (Pozycja pozycja: pozycjaRepository.findByZamowienie(zamowienie)) {
+                brutto = brutto + pozycja.getIlosc() * pozycja.getTowar().getCenaBrutto();
+                netto = netto + pozycja.getIlosc() * pozycja.getTowar().getCenaNetto();
+            }
+            zamowienie.setKwotaBrutto(brutto);
+            zamowienie.setKwotaNetto(netto);
+        }
+    }
+
 }

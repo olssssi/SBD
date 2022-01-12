@@ -89,6 +89,14 @@ public class Zamowienie {
         this.faktura = faktura;
     }
 
+    public void setKwotaNetto(float kwotaNetto) {
+        this.kwotaNetto = kwotaNetto;
+    }
+
+    public void setKwotaBrutto(float kwotaBrutto) {
+        this.kwotaBrutto = kwotaBrutto;
+    }
+
     public float getKwotaNetto() {
         return kwotaNetto;
     }
