@@ -35,6 +35,8 @@ public class FakturaController {
 
     @GetMapping("/zamowienia/{id}")
     public ResponseEntity<List<Zamowienie>> getZamowienia(@PathVariable Long id) throws FakturaNotFoundException {
+        zamowienieService.calcSum();
+        fakturaService.calcSum();
         Faktura faktura = fakturaService.findById(id);
         return new ResponseEntity<>(new ArrayList<>(fakturaService.getZamowienia(faktura)), HttpStatus.OK);
     }

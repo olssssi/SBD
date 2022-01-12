@@ -80,6 +80,8 @@ public class ZamowienieController {
     @PutMapping("/faktura/{id}")
     @ResponseBody
     public ResponseEntity<HttpStatus> assignFakturaToZamowienie(@PathVariable Long id, @RequestBody Faktura faktura) throws ZamowienieNotFoundException {
+        zamowienieService.calcSum();
+        fakturaService.calcSum();
         zamowienieService.assignFaktura(id, faktura);
         return new ResponseEntity<>(HttpStatus.OK);
     }
