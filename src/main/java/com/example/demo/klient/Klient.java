@@ -185,4 +185,8 @@ public class Klient {
     public void setRabat(Rabat rabat) {
         this.rabat = rabat;
     }
+
+    public String convert(){
+        return this.idKlienta+" "+this.imie+" "+this.nazwisko;
+    }
 }

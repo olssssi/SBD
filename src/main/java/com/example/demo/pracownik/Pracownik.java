@@ -72,4 +72,8 @@ public class Pracownik {
     public void setStanowisko(Stanowisko stanowisko) {
         this.stanowisko = stanowisko;
     }
+
+    public String convert(){
+        return this.idPracownika+" "+this.imie+" "+this.nazwisko;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.zamowienie;
 
+import com.example.demo.annotation.ExcludeFromExport;
 import com.example.demo.faktura.Faktura;
 import com.example.demo.klient.Klient;
 import com.example.demo.pozycja.Pozycja;
@@ -24,12 +25,15 @@ public class Zamowienie {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pracownik_id")
     private Pracownik pracownik;
+    @ExcludeFromExport
     private StanZamowienia stanZamowienia;
     @OneToMany(mappedBy = "zamowienie", cascade = CascadeType.ALL,
             orphanRemoval = true)
+    @ExcludeFromExport
     private Set<Pozycja> pozycje = new HashSet<>();
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faktura_id")
+    @ExcludeFromExport
     private Faktura faktura;
     private float kwotaNetto;
     private float kwotaBrutto;

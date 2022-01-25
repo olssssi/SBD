@@ -27,8 +27,6 @@ public class Faktura {
 //        zamowienia.forEach(zamowienie -> zamowienie.setFaktura(null));
 //    }
 
-    //TODO: jeżeli jest już po maksymalnej dacie -> zamówienie automatycznie przechodzi w stan anulowany
-
     public Faktura() {
         this.zamowienia = new HashSet<>();
 //        this.maxDataRealizacji = OffsetDateTime.now().plusDays(14);
